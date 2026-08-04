@@ -21,11 +21,14 @@
 @theme inline {
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
   --color-success: var(--success);
+  --color-accent-deep: var(--accent-deep);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
   --color-surface-deep: var(--surface-deep);
   --color-surface-deep-foreground: var(--surface-deep-foreground);
+
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
