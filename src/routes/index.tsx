@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import heroImg from "@/assets/hero-engenheiro.jpg";
 import droneImg from "@/assets/obra-drone.jpg";
 import trincaImg from "@/assets/trinca.jpg";
 import avcbImg from "@/assets/avcb.jpg";
 
-const TITLE = "Laudo Técnico com Engenheiro CREA | BDS Engenharia";
+const TITLE = "Laudos Técnicos com Engenheiro CREA | BDS Engenharia";
 const DESCRIPTION =
-  "Laudos técnicos, AVCB, perícias e avaliações com validade jurídica e ART. Engenheiro responsável do diagnóstico ao pós-venda, em todo o Brasil.";
+  "Laudos de engenharia civil, AVCB, perícias, LTA e programas de segurança do trabalho com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,11 +29,14 @@ export const Route = createFileRoute("/")({
           description: DESCRIPTION,
           areaServed: "BR",
           serviceType: [
-            "Laudo Técnico",
-            "Perícia de Engenharia",
-            "AVCB",
-            "Avaliação de Imóveis",
-            "Segurança do Trabalho",
+            "Laudo de Vistoria Técnica",
+            "Laudo de Acessibilidade",
+            "Laudo de Patologias Construtivas",
+            "Laudo de Conformidade Técnica",
+            "Perícia Técnica",
+            "AVCB e CLCB",
+            "LTCAT",
+            "PCMSO",
           ],
         }),
       },
@@ -41,14 +45,21 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "https://wa.me/5500000000000";
+const WHATSAPP_NUMBER = "5500000000000";
 
-const beneficios = [
-  "ART quando aplicável",
-  "Atendimento em todo Brasil",
-  "Orçamento rápido",
-  "Atendimento por Engenheiro",
-  "Suporte até a conclusão",
+function waLink(msg: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+const DEFAULT_WA = waLink(
+  "Olá! Vim pelo site da BDS Engenharia e preciso de um orçamento de laudo técnico.",
+);
+
+const heroBullets = [
+  "ART emitida quando exigido",
+  "Engenheiro responsável no atendimento",
+  "Atendimento em todo o Brasil",
+  "Orçamento no mesmo dia útil",
 ];
 
 const publicos = [
@@ -61,101 +72,196 @@ const publicos = [
 ];
 
 const problemas = [
-  { t: "AVCB", d: "O Corpo de Bombeiros exigiu regularização do seu imóvel." },
-  { t: "Trincas", d: "Apareceram fissuras e você precisa saber se há risco." },
-  { t: "Infiltração", d: "Umidade que volta sempre e ninguém identifica a origem." },
-  { t: "Avaliação de imóvel", d: "Precisa do valor de mercado com respaldo técnico." },
-  { t: "Vistoria", d: "Registro do estado do imóvel antes de obra, locação ou venda." },
-  { t: "Processo judicial", d: "O juiz ou seu advogado pediu um documento pericial." },
-  { t: "Vigilância Sanitária", d: "Exigência de LTA para liberação do funcionamento." },
-  { t: "Adequação NR", d: "Fiscalização, GRO, LTCAT e demais exigências trabalhistas." },
+  { t: "AVCB vencido", d: "O Corpo de Bombeiros exigiu regularização da edificação." },
+  { t: "Trincas na estrutura", d: "Fissuras apareceram e você precisa saber se há risco." },
+  { t: "Infiltração", d: "Umidade que sempre volta e ninguém identifica a origem." },
+  { t: "Venda ou locação", d: "Registro do estado do imóvel antes de fechar negócio." },
+  { t: "Processo judicial", d: "O juiz ou seu advogado pediu documento pericial." },
+  { t: "Vigilância Sanitária", d: "LTA exigido para liberar clínica, hospital ou consultório." },
+  { t: "Fiscalização do trabalho", d: "GRO, LTCAT, PCMSO ou PPP cobrados pela fiscalização." },
+  { t: "Acessibilidade", d: "Adequação obrigatória à NBR 9050 em prédios e condomínios." },
+];
+
+const catalogoCivil = [
+  {
+    n: "Laudo de Vistoria Técnica",
+    d: "Registra o estado do imóvel antes de reformas, locações ou negociações.",
+    p: "R$ 500 – R$ 3.500",
+    o: "Depende da metragem e da profundidade da análise.",
+  },
+  {
+    n: "Laudo de Acessibilidade",
+    d: "Verifica conformidade com as normas de acessibilidade para pessoas com deficiência.",
+    p: "R$ 1.500 – R$ 5.000",
+    o: "Exigido em edificações públicas e condomínios.",
+  },
+  {
+    n: "Laudo de Patologias Construtivas",
+    d: "Identifica fissuras, infiltrações, recalques e outros problemas.",
+    p: "R$ 2.000 – R$ 6.000",
+    o: "Inclui diagnóstico das causas e recomendações.",
+  },
+  {
+    n: "Laudo de Conformidade Técnica",
+    d: "Confirma se a obra atende às normas da ABNT e às legislações locais.",
+    p: "R$ 2.000 – R$ 8.000",
+    o: "Confirma atendimento às normas ABNT.",
+  },
+  {
+    n: "PAE – Plano de Abandono em Emergência",
+    d: "Procedimentos de evacuação e resposta a emergências da edificação.",
+    p: "R$ 3.000 – R$ 10.000",
+    o: "Normalmente exigido em grandes empreendimentos.",
+  },
+  {
+    n: "Laudo de Impacto de Vizinhança",
+    d: "Avalia os efeitos do empreendimento sobre o entorno urbano.",
+    p: "R$ 5.000 – R$ 15.000+",
+    o: "Necessário para aprovação de empreendimentos de grande porte.",
+  },
+  {
+    n: "LTA – Laudo Técnico de Avaliação",
+    d: "Documento técnico exigido pela Vigilância Sanitária.",
+    p: "R$ 1.500 – R$ 4.000",
+    o: "Usado em clínicas, hospitais e estabelecimentos de saúde.",
+  },
+  {
+    n: "Laudo de Perícia Técnica",
+    d: "Análise detalhada para processos judiciais e administrativos.",
+    p: "R$ 2.500 – R$ 10.000",
+    o: "Valores sobem em perícias judiciais complexas.",
+  },
+  {
+    n: "Laudo de Bombeiro (AVCB / CLCB)",
+    d: "Regularização da edificação junto ao Corpo de Bombeiros.",
+    p: "R$ 1.500 – R$ 8.000",
+    o: "Depende da área construída e do risco da edificação.",
+  },
+];
+
+const catalogoTrabalho = [
+  {
+    n: "GRO",
+    d: "Gerenciamento de Riscos Ocupacionais: processo contínuo de identificação, avaliação e controle de riscos.",
+  },
+  {
+    n: "LTCAT",
+    d: "Laudo Técnico das Condições Ambientais do Trabalho: usado para aposentadoria especial, identifica exposição a agentes nocivos.",
+  },
+  {
+    n: "PCMSO",
+    d: "Programa de Controle Médico de Saúde Ocupacional: monitoramento da saúde dos trabalhadores.",
+  },
+  {
+    n: "PPP",
+    d: "Perfil Profissiográfico Previdenciário: histórico laboral exigido pelo INSS.",
+  },
+  {
+    n: "AET",
+    d: "Análise Ergonômica do Trabalho: avalia condições ergonômicas e riscos relacionados.",
+  },
+  {
+    n: "PCMAT",
+    d: "Programa de Condições e Meio Ambiente de Trabalho na Construção Civil: obrigatório em obras com mais de 20 trabalhadores.",
+  },
+];
+
+const tiposDoc = [
+  {
+    t: "Laudo Técnico",
+    f: "Documento conclusivo sobre condições, defeitos ou causas em obras e ambientes.",
+    s: "Cliente, empresa ou órgão público",
+  },
+  {
+    t: "Perícia Técnica",
+    f: "Análise detalhada, geralmente em processos judiciais ou administrativos.",
+    s: "Juiz ou autoridade competente",
+  },
+  {
+    t: "Vistoria Técnica",
+    f: "Inspeção visual e descritiva do estado de conservação ou conformidade.",
+    s: "Livre, conforme contrato",
+  },
+];
+
+const pontos = [
+  {
+    t: "Obrigatoriedade da ART",
+    d: "Todo laudo ou perícia deve ser vinculado a um engenheiro registrado no CREA.",
+  },
+  {
+    t: "Validade jurídica",
+    d: "Laudos e perícias têm valor probatório em disputas judiciais e administrativas.",
+  },
+  {
+    t: "Segurança e conformidade",
+    d: "Além de proteger trabalhadores e usuários, são exigidos por órgãos públicos e seguradoras.",
+  },
 ];
 
 const etapas = [
-  "Solicite um orçamento",
-  "Um engenheiro analisa sua necessidade",
-  "Agendamos a vistoria",
-  "Realizamos a inspeção",
-  "Emitimos o laudo",
-  "Entregamos toda a documentação",
+  { t: "Solicite o orçamento", d: "Você descreve a situação em 1 minuto, pelo formulário ou WhatsApp." },
+  { t: "Diagnóstico do engenheiro", d: "Analisamos a necessidade e indicamos o documento correto." },
+  { t: "Agendamento da vistoria", d: "Definimos data, escopo e prazo antes de qualquer cobrança." },
+  { t: "Inspeção técnica", d: "Levantamento em campo com registro fotográfico e medições." },
+  { t: "Emissão do laudo e ART", d: "Documento assinado por profissional habilitado." },
+  { t: "Entrega e pós-venda", d: "Orientação sobre o que fazer e suporte até a resolução." },
+];
+
+const comparativo = [
+  ["Atendimento genérico por atendente", "Atendimento consultivo com engenheiro responsável"],
+  ["Só respondem preço", "Diagnóstico inicial antes do orçamento"],
+  ["Orçamento demora dias", "Retorno no mesmo dia útil"],
+  ["Processo não explicado", "Cada etapa explicada por escrito"],
+  ["Entrega o PDF e encerra", "Orientação e pós-venda até a conclusão"],
 ];
 
 const indicadores = [
   { n: "+320", l: "empresas atendidas" },
   { n: "+1.500", l: "laudos emitidos" },
-  { n: "12", l: "anos de experiência" },
+  { n: "12 anos", l: "de experiência técnica" },
   { n: "18", l: "estados atendidos" },
-];
-
-const servicos = [
-  {
-    area: "Engenharia Civil",
-    itens: [
-      "Laudo de Vistoria Técnica",
-      "Laudo de Patologias Construtivas",
-      "Laudo de Conformidade Técnica",
-      "Laudo de Acessibilidade",
-      "Laudo de Perícia Técnica",
-      "Laudo de Impacto de Vizinhança",
-      "Avaliação de Imóveis",
-    ],
-  },
-  { area: "Segurança Contra Incêndio", itens: ["AVCB", "CLCB", "PAE"] },
-  {
-    area: "Segurança do Trabalho",
-    itens: ["GRO", "LTCAT", "PCMSO", "PPP", "AET", "PCMAT"],
-  },
-  { area: "Vigilância Sanitária", itens: ["LTA"] },
-];
-
-const comparativo = [
-  ["Atendimento genérico", "Atendimento consultivo"],
-  ["Apenas respondem perguntas", "Engenheiro responsável no atendimento"],
-  ["Demoram no orçamento", "Diagnóstico inicial imediato"],
-  ["Cliente fala com atendente", "Processo explicado do início ao fim"],
-  ["Não explicam o processo", "Suporte completo"],
-  ["Entregam e somem", "Pós-venda e orientação"],
-];
-
-const glossario = [
-  { t: "Laudo", d: "Documento conclusivo sobre a condição técnica avaliada." },
-  { t: "Perícia", d: "Documento utilizado em processos judiciais ou administrativos." },
-  { t: "Vistoria", d: "Inspeção visual e descritiva do estado do imóvel." },
 ];
 
 const faq = [
   {
     q: "Quanto custa um laudo técnico?",
-    a: "O valor depende da finalidade, metragem, localização e complexidade. Fazemos três perguntas rápidas e enviamos um orçamento correto — sem surpresa depois.",
+    a: "O valor depende da finalidade, metragem, localização e complexidade. As faixas de referência estão na tabela acima; o orçamento final é fechado após três perguntas rápidas, sem custo.",
   },
   {
     q: "Quanto tempo demora?",
-    a: "A vistoria costuma ser agendada em poucos dias e o laudo é entregue após a inspeção, conforme a complexidade do caso. O prazo é informado no orçamento.",
+    a: "A vistoria costuma ser agendada em poucos dias e o laudo é entregue após a inspeção. O prazo exato vai por escrito no orçamento.",
   },
   {
     q: "Precisa de ART?",
-    a: "Sempre que exigido pela finalidade do documento, a ART é emitida e vinculada ao engenheiro responsável.",
+    a: "Sim, sempre que a finalidade exigir. A ART é emitida e vinculada ao engenheiro responsável registrado no CREA.",
   },
   {
-    q: "O laudo tem validade jurídica?",
-    a: "Sim. Assinado por profissional habilitado e seguindo as normas técnicas da ABNT, o documento tem validade jurídica.",
+    q: "O documento tem validade jurídica?",
+    a: "Sim. Assinado por profissional habilitado e seguindo as normas da ABNT, tem valor probatório em disputas judiciais e administrativas.",
   },
   {
     q: "Serve em processo judicial?",
-    a: "Sim. Elaboramos documentos para uso judicial e administrativo, com a fundamentação técnica exigida.",
+    a: "Sim. Elaboramos perícias e laudos com a fundamentação técnica exigida por juízos e órgãos administrativos.",
   },
   {
     q: "Quem pode emitir?",
-    a: "Somente profissional habilitado e registrado no CREA, dentro das suas atribuições.",
+    a: "Somente engenheiro registrado no CREA, dentro das suas atribuições profissionais.",
   },
   {
-    q: "Posso fazer online?",
-    a: "O atendimento, o diagnóstico e a entrega são online. A inspeção é presencial, quando o tipo de laudo exige.",
+    q: "Posso resolver tudo online?",
+    a: "Atendimento, diagnóstico, orçamento e entrega são online. A inspeção é presencial quando o tipo de documento exige.",
   },
   {
-    q: "Como funciona o processo?",
-    a: "Diagnóstico inicial, vistoria, emissão da ART, laudo, orientação sobre o que fazer e acompanhamento pós-entrega.",
+    q: "Vocês atendem minha cidade?",
+    a: "Atendemos empresas, condomínios, indústrias e imóveis em todo o Brasil. Confirme sua cidade no primeiro contato.",
   },
+];
+
+const servicosSelect = [
+  ...catalogoCivil.map((c) => c.n),
+  ...catalogoTrabalho.map((c) => `${c.n} – Segurança do Trabalho`),
+  "Ainda não sei qual preciso",
 ];
 
 function Check({ className = "" }: { className?: string }) {
@@ -163,7 +269,7 @@ function Check({ className = "" }: { className?: string }) {
     <svg
       viewBox="0 0 20 20"
       aria-hidden="true"
-      className={`size-5 shrink-0 ${className}`}
+      className={`size-4 shrink-0 ${className}`}
       fill="none"
       stroke="currentColor"
       strokeWidth="2.4"
@@ -180,7 +286,7 @@ function Cross() {
     <svg
       viewBox="0 0 20 20"
       aria-hidden="true"
-      className="size-5 shrink-0 text-muted-foreground"
+      className="size-4 shrink-0 text-muted-foreground"
       fill="none"
       stroke="currentColor"
       strokeWidth="2.2"
@@ -191,35 +297,118 @@ function Cross() {
   );
 }
 
+function QuoteForm() {
+  const [form, setForm] = useState({
+    nome: "",
+    servico: servicosSelect[0],
+    cidade: "",
+    tipo: "",
+    metragem: "",
+    prazo: "",
+  });
+
+  const mensagem = `Olá! Sou ${form.nome || "(nome)"} e preciso de um orçamento.
+Serviço: ${form.servico}
+Cidade: ${form.cidade || "-"}
+Tipo do imóvel: ${form.tipo || "-"}
+Metragem: ${form.metragem || "-"}
+Prazo desejado: ${form.prazo || "-"}`;
+
+  const field =
+    "w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-accent focus:ring-2 focus:ring-accent/25";
+
+  return (
+    <form
+      className="card-elevated rounded-xl p-6 sm:p-7"
+      onSubmit={(e) => {
+        e.preventDefault();
+        window.open(waLink(mensagem), "_blank", "noopener");
+      }}
+    >
+      <h3 className="text-xl">Solicite seu orçamento</h3>
+      <p className="mt-1.5 text-sm text-muted-foreground">
+        Seis campos, resposta de um engenheiro no mesmo dia útil.
+      </p>
+      <div className="mt-5 grid gap-3">
+        <input
+          className={field}
+          placeholder="Seu nome"
+          required
+          value={form.nome}
+          onChange={(e) => setForm({ ...form, nome: e.target.value })}
+        />
+        <select
+          className={field}
+          value={form.servico}
+          onChange={(e) => setForm({ ...form, servico: e.target.value })}
+        >
+          {servicosSelect.map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <input
+            className={field}
+            placeholder="Cidade / UF"
+            value={form.cidade}
+            onChange={(e) => setForm({ ...form, cidade: e.target.value })}
+          />
+          <input
+            className={field}
+            placeholder="Tipo do imóvel"
+            value={form.tipo}
+            onChange={(e) => setForm({ ...form, tipo: e.target.value })}
+          />
+          <input
+            className={field}
+            placeholder="Metragem aproximada"
+            value={form.metragem}
+            onChange={(e) => setForm({ ...form, metragem: e.target.value })}
+          />
+          <input
+            className={field}
+            placeholder="Prazo desejado"
+            value={form.prazo}
+            onChange={(e) => setForm({ ...form, prazo: e.target.value })}
+          />
+        </div>
+      </div>
+      <button type="submit" className="btn-pill btn-green mt-5 w-full font-semibold">
+        Enviar e falar com o engenheiro
+      </button>
+      <p className="mt-3 text-center text-xs text-muted-foreground">
+        Sem compromisso. Você recebe o diagnóstico inicial antes de qualquer valor.
+      </p>
+    </form>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
+      <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#topo" className="flex items-baseline gap-2">
-            <span className="font-display text-xl font-black tracking-tight">BDS</span>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="text-lg font-semibold tracking-tight">BDS</span>
+            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               Engenharia
             </span>
           </a>
-          <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
+          <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
             <a className="transition-colors hover:text-foreground" href="#problemas">
               Problemas
             </a>
+            <a className="transition-colors hover:text-foreground" href="#laudos">
+              Laudos e preços
+            </a>
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#servicos">
-              Serviços
             </a>
             <a className="transition-colors hover:text-foreground" href="#faq">
               Dúvidas
             </a>
           </nav>
-          <a
-            href={WHATSAPP}
-            className="rounded-sm bg-accent px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-accent-foreground transition-transform hover:-translate-y-0.5"
-          >
+          <a href="#orcamento" className="btn-pill btn-dark">
             Solicitar orçamento
           </a>
         </div>
@@ -227,36 +416,35 @@ function Index() {
 
       <main id="topo">
         {/* HERO */}
-        <section className="surface-deep-panel">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+        <section className="sky-panel relative overflow-hidden">
+          <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-28 lg:pt-24">
             <div>
-              <p className="eyebrow">Engenheiro responsável · CREA</p>
-              <h1 className="mt-4 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.4rem]">
-                Resolva seu problema com um Laudo Técnico emitido por Engenheiro Civil
-                registrado no CREA.
+              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/70 px-3 py-1 text-xs font-medium">
+                <span className="size-1.5 rounded-full bg-accent-deep" />
+                Engenheiro responsável registrado no CREA
+              </span>
+              <h1 className="mt-5 text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
+                Resolva seu problema com um laudo técnico que tem ART e validade jurídica.
               </h1>
-              <p className="mt-5 max-w-xl text-lg text-surface-deep-foreground/75">
-                Segurança técnica, validade jurídica e atendimento rápido para empresas,
-                condomínios, indústrias e imóveis.
+              <p className="mt-5 max-w-xl text-lg text-foreground/70">
+                Segurança técnica, conformidade e atendimento rápido para empresas,
+                condomínios, indústrias e imóveis — em todo o Brasil.
               </p>
-              <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
-                {beneficios.map((b) => (
-                  <li key={b} className="flex items-center gap-2.5 text-sm font-medium">
-                    <Check className="text-accent" />
+              <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+                {heroBullets.map((b) => (
+                  <li key={b} className="flex items-center gap-2 text-sm font-medium">
+                    <Check className="text-accent-deep" />
                     {b}
                   </li>
                 ))}
               </ul>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href={WHATSAPP}
-                  className="rounded-sm bg-accent px-7 py-4 text-sm font-black uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5"
-                >
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#orcamento" className="btn-pill btn-dark px-7 py-3.5 font-semibold">
                   Solicitar orçamento
                 </a>
                 <a
-                  href={WHATSAPP}
-                  className="rounded-sm border border-surface-deep-foreground/30 px-7 py-4 text-sm font-bold uppercase tracking-wider transition-colors hover:bg-surface-deep-foreground/10"
+                  href={DEFAULT_WA}
+                  className="btn-pill btn-outline border-foreground/20 bg-background/70 px-7 py-3.5"
                 >
                   Falar com um engenheiro
                 </a>
@@ -265,27 +453,25 @@ function Index() {
             <figure className="relative">
               <img
                 src={heroImg}
-                alt="Engenheiro civil da BDS Engenharia realizando vistoria em fachada com trinca estrutural"
+                alt="Engenheiro civil da BDS Engenharia em vistoria de fachada com trinca estrutural"
                 width={1408}
                 height={1104}
-                className="w-full rounded-sm object-cover shadow-[var(--shadow-lift)]"
+                className="w-full rounded-xl object-cover shadow-[var(--shadow-lift)]"
               />
-              <figcaption className="absolute bottom-0 left-0 m-4 max-w-[15rem] rounded-sm bg-background/95 p-4 text-xs leading-relaxed text-foreground">
-                <strong className="font-display">Vistoria real.</strong> Cada laudo nasce
-                de uma inspeção feita por engenheiro, nunca de um modelo pronto.
+              <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-lg bg-background/95 p-4 text-xs leading-relaxed">
+                <strong className="font-semibold">Vistoria real.</strong> Todo laudo nasce de
+                uma inspeção em campo feita por engenheiro, nunca de um modelo pronto.
               </figcaption>
             </figure>
           </div>
         </section>
 
         {/* PÚBLICOS */}
-        <section className="border-b border-border bg-secondary/60">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-3 px-5 py-6">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-              Atendemos
-            </span>
+        <section className="border-b border-border bg-secondary/70">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-9 gap-y-3 px-5 py-5">
+            <span className="eyebrow">Atendemos</span>
             {publicos.map((p) => (
-              <span key={p} className="font-display text-lg font-bold text-primary/70">
+              <span key={p} className="text-sm font-medium text-foreground/70">
                 {p}
               </span>
             ))}
@@ -299,21 +485,21 @@ function Index() {
             Qual problema você precisa resolver?
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Ninguém acorda querendo comprar um laudo. Escolha a situação parecida com a
-            sua e um engenheiro responde com o caminho técnico.
+            Ninguém acorda querendo comprar um laudo. Escolha a situação parecida com a sua
+            e um engenheiro responde com o caminho técnico correto.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {problemas.map((p) => (
               <a
                 key={p.t}
-                href={WHATSAPP}
-                className="card-elevated group flex flex-col rounded-sm p-5 transition-all hover:-translate-y-1 hover:border-accent"
+                href="#orcamento"
+                className="card-elevated group flex flex-col rounded-xl p-5 transition-all hover:-translate-y-0.5 hover:border-accent"
               >
-                <h3 className="text-lg">{p.t}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <h3 className="text-base font-semibold">{p.t}</h3>
+                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.d}
                 </p>
-                <span className="mt-4 text-xs font-bold uppercase tracking-widest text-accent">
+                <span className="mt-4 text-xs font-semibold text-accent-deep">
                   Resolver isso →
                 </span>
               </a>
@@ -321,41 +507,107 @@ function Index() {
           </div>
         </section>
 
-        {/* DIFERENCIAL + FOTOS */}
-        <section className="border-y border-border bg-secondary/50">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2 lg:items-center">
-            <div>
-              <p className="eyebrow">Diferencial</p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">
-                Outras empresas entregam um documento. Nós acompanhamos todo o processo.
-              </h2>
-              <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-                {[
-                  "Diagnóstico inicial",
-                  "Vistoria",
-                  "ART",
-                  "Laudo",
-                  "Orientação",
-                  "Pós-venda",
-                ].map((i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-2.5 rounded-sm bg-card px-4 py-3 text-sm font-semibold"
+        {/* LAUDOS E PREÇOS */}
+        <section id="laudos" className="border-y border-border bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-5 py-20">
+            <p className="eyebrow">Laudos em engenharia civil</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              O que emitimos — e a faixa de investimento
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Faixas médias de mercado para você ter referência antes de conversar. O valor
+              final depende de finalidade, metragem, localização e complexidade.
+            </p>
+            <div className="mt-9 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {catalogoCivil.map((c) => (
+                <div key={c.n} className="card-elevated flex flex-col rounded-xl p-6">
+                  <h3 className="text-base font-semibold">{c.n}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {c.d}
+                  </p>
+                  <p className="mt-4 font-mono text-sm font-medium text-accent-deep">{c.p}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{c.o}</p>
+                  <a
+                    href="#orcamento"
+                    className="btn-pill btn-outline mt-4 w-full text-sm hover:bg-secondary"
                   >
-                    <Check className="text-success" />
-                    {i}
-                  </li>
-                ))}
-              </ul>
+                    Orçar este laudo
+                  </a>
+                </div>
+              ))}
             </div>
-            <div className="grid grid-cols-2 gap-3">
+
+            <h3 className="mt-14 text-2xl">Segurança e saúde do trabalho</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Programas e laudos obrigatórios para manter sua empresa em conformidade com as
+              NRs e com o INSS.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {catalogoTrabalho.map((c) => (
+                <div key={c.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
+                  <span className="font-mono text-sm font-medium">{c.n}</span>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DIFERENÇA ENTRE DOCUMENTOS */}
+        <section className="mx-auto max-w-6xl px-5 py-20">
+          <p className="eyebrow">Entenda antes de contratar</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Laudo, perícia e vistoria</h2>
+          <div className="mt-8 overflow-hidden rounded-xl border border-border">
+            <div className="hidden grid-cols-[1fr_2fr_1.2fr] bg-secondary text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:grid">
+              <div className="px-5 py-3">Tipo</div>
+              <div className="px-5 py-3">Finalidade</div>
+              <div className="px-5 py-3">Solicitante</div>
+            </div>
+            {tiposDoc.map((t) => (
+              <div
+                key={t.t}
+                className="grid gap-1 border-t border-border bg-card px-5 py-4 text-sm sm:grid-cols-[1fr_2fr_1.2fr] sm:gap-0 sm:px-0"
+              >
+                <div className="font-semibold sm:px-5">{t.t}</div>
+                <div className="text-muted-foreground sm:px-5">{t.f}</div>
+                <div className="text-muted-foreground sm:px-5">{t.s}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {pontos.map((p) => (
+              <div key={p.t} className="rounded-xl bg-secondary/70 p-5">
+                <h3 className="text-sm font-semibold">{p.t}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{p.d}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PROCESSO + FOTOS */}
+        <section id="processo" className="border-y border-border bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-5 py-20">
+            <p className="eyebrow">Como funciona</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Do primeiro contato à documentação</h2>
+            <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {etapas.map((e, i) => (
+                <div key={e.t} className="card-elevated rounded-xl p-6">
+                  <span className="font-mono text-sm text-accent-deep">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-2 text-base font-semibold">{e.t}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{e.d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <img
                 src={droneImg}
                 alt="Inspeção de fachada de condomínio com drone"
                 width={900}
                 height={700}
                 loading="lazy"
-                className="col-span-2 h-56 w-full rounded-sm object-cover"
+                className="h-48 w-full rounded-xl object-cover"
               />
               <img
                 src={trincaImg}
@@ -363,7 +615,7 @@ function Index() {
                 width={900}
                 height={700}
                 loading="lazy"
-                className="h-44 w-full rounded-sm object-cover"
+                className="h-48 w-full rounded-xl object-cover"
               />
               <img
                 src={avcbImg}
@@ -371,26 +623,10 @@ function Index() {
                 width={900}
                 height={700}
                 loading="lazy"
-                className="h-44 w-full rounded-sm object-cover"
+                className="h-48 w-full rounded-xl object-cover"
               />
             </div>
           </div>
-        </section>
-
-        {/* PROCESSO */}
-        <section id="processo" className="mx-auto max-w-6xl px-5 py-20">
-          <p className="eyebrow">Como funciona</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Do primeiro contato à documentação</h2>
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {etapas.map((e, i) => (
-              <li key={e} className="bg-card p-6">
-                <span className="font-display text-3xl font-black text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-2 font-semibold">{e}</p>
-              </li>
-            ))}
-          </ol>
         </section>
 
         {/* INDICADORES */}
@@ -398,105 +634,90 @@ function Index() {
           <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-5 py-14 lg:grid-cols-4">
             {indicadores.map((i) => (
               <div key={i.l}>
-                <p className="font-display text-4xl font-black text-accent">{i.n}</p>
+                <p className="text-3xl font-semibold tracking-tight">{i.n}</p>
                 <p className="mt-1 text-sm text-surface-deep-foreground/70">{i.l}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* SERVIÇOS */}
-        <section id="servicos" className="mx-auto max-w-6xl px-5 py-20">
-          <p className="eyebrow">Serviços</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">O que emitimos</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {servicos.map((s) => (
-              <div key={s.area} className="card-elevated rounded-sm p-6">
-                <h3 className="text-xl">{s.area}</h3>
-                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {s.itens.map((i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
-                    >
-                      <Check className="mt-px size-4 text-accent" />
-                      {i}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 rounded-sm border-l-2 border-accent bg-secondary/60 px-5 py-4 text-sm text-muted-foreground">
-            Todos os laudos possuem ART quando exigido, seguem as normas técnicas
-            aplicáveis, têm validade jurídica e são assinados por profissional habilitado.
-          </p>
-        </section>
-
         {/* COMPARATIVO */}
-        <section className="border-y border-border bg-secondary/50">
-          <div className="mx-auto max-w-4xl px-5 py-20">
-            <p className="eyebrow">Comparativo</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Por que a BDS converte confiança</h2>
-            <div className="mt-9 overflow-hidden rounded-sm border border-border">
-              <div className="grid grid-cols-2 bg-card">
-                <div className="border-r border-border px-5 py-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                  Outras empresas
+        <section className="mx-auto max-w-4xl px-5 py-20">
+          <p className="eyebrow">Comparativo</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Por que fechar com a BDS</h2>
+          <div className="mt-8 overflow-hidden rounded-xl border border-border">
+            <div className="grid grid-cols-2 bg-card">
+              <div className="border-r border-border px-5 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Outras empresas
+              </div>
+              <div className="bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wide text-primary-foreground">
+                BDS Engenharia
+              </div>
+            </div>
+            {comparativo.map(([a, b]) => (
+              <div key={b} className="grid grid-cols-2 border-t border-border bg-card">
+                <div className="flex items-start gap-2.5 border-r border-border px-5 py-4 text-sm text-muted-foreground">
+                  <Cross />
+                  {a}
                 </div>
-                <div className="bg-primary px-5 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground">
-                  BDS Engenharia
+                <div className="flex items-start gap-2.5 px-5 py-4 text-sm font-medium">
+                  <Check className="mt-0.5 text-accent-deep" />
+                  {b}
                 </div>
               </div>
-              {comparativo.map(([a, b]) => (
-                <div key={b} className="grid grid-cols-2 border-t border-border bg-card">
-                  <div className="flex items-center gap-2.5 border-r border-border px-5 py-4 text-sm text-muted-foreground">
-                    <Cross />
-                    {a}
-                  </div>
-                  <div className="flex items-center gap-2.5 px-5 py-4 text-sm font-semibold">
-                    <Check className="text-success" />
-                    {b}
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* GLOSSÁRIO */}
-        <section className="mx-auto max-w-6xl px-5 py-20">
-          <p className="eyebrow">Entenda a diferença</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Laudo, perícia e vistoria</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {glossario.map((g) => (
-              <div key={g.t} className="card-elevated rounded-sm p-6">
-                <h3 className="text-lg">{g.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{g.d}</p>
-              </div>
-            ))}
+        {/* ORÇAMENTO */}
+        <section id="orcamento" className="border-y border-border bg-secondary/50">
+          <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <p className="eyebrow">Orçamento</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl">
+                Antes de falar de preço, entendemos o seu problema.
+              </h2>
+              <p className="mt-4 max-w-lg text-muted-foreground">
+                Preencha os dados ao lado e o engenheiro responsável retorna com o documento
+                indicado, o prazo e o valor fechado — sem custo pelo diagnóstico inicial.
+              </p>
+              <ul className="mt-6 grid gap-2.5">
+                {[
+                  "Resposta no mesmo dia útil",
+                  "Escopo e prazo por escrito antes da cobrança",
+                  "ART emitida quando exigido",
+                  "Suporte até a conclusão do processo",
+                ].map((i) => (
+                  <li key={i} className="flex items-center gap-2.5 text-sm font-medium">
+                    <Check className="text-accent-deep" />
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <a href={DEFAULT_WA} className="btn-pill btn-outline mt-7 bg-card">
+                Prefiro chamar no WhatsApp
+              </a>
+            </div>
+            <QuoteForm />
           </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="border-t border-border bg-secondary/50">
-          <div className="mx-auto max-w-3xl px-5 py-20">
-            <p className="eyebrow">Dúvidas frequentes</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">Perguntas que todo cliente faz</h2>
-            <div className="mt-8 divide-y divide-border overflow-hidden rounded-sm border border-border bg-card">
-              {faq.map((f) => (
-                <details key={f.q} className="group px-5 py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display font-bold">
-                    {f.q}
-                    <span className="text-accent transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {f.a}
-                  </p>
-                </details>
-              ))}
-            </div>
+        <section id="faq" className="mx-auto max-w-3xl px-5 py-20">
+          <p className="eyebrow">Dúvidas frequentes</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Perguntas que todo cliente faz</h2>
+          <div className="mt-8 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+            {faq.map((f) => (
+              <details key={f.q} className="group px-5 py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold">
+                  {f.q}
+                  <span className="text-accent-deep transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
           </div>
         </section>
 
@@ -505,21 +726,18 @@ function Index() {
           <div className="mx-auto max-w-3xl px-5 py-20 text-center">
             <h2 className="text-3xl sm:text-4xl">Não espere o problema aumentar.</h2>
             <p className="mt-3 text-surface-deep-foreground/75">
-              Fale agora com o engenheiro responsável e receba um diagnóstico inicial antes
+              Fale agora com o engenheiro responsável e receba o diagnóstico inicial antes
               mesmo do orçamento.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href={WHATSAPP}
-                className="rounded-sm bg-whatsapp px-8 py-4 text-sm font-black uppercase tracking-wider text-whatsapp-foreground transition-transform hover:-translate-y-0.5"
-              >
+              <a href={DEFAULT_WA} className="btn-pill btn-green px-8 py-3.5 font-semibold">
                 Chamar no WhatsApp
               </a>
               <a
-                href="tel:+550000000000"
-                className="rounded-sm border border-surface-deep-foreground/30 px-8 py-4 text-sm font-bold uppercase tracking-wider transition-colors hover:bg-surface-deep-foreground/10"
+                href="#orcamento"
+                className="btn-pill btn-outline border-surface-deep-foreground/25 px-8 py-3.5 text-surface-deep-foreground hover:bg-surface-deep-foreground/10"
               >
-                Ligar agora
+                Preencher formulário
               </a>
             </div>
           </div>
@@ -529,12 +747,20 @@ function Index() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            <span className="font-display font-black text-foreground">BDS Engenharia</span>{" "}
-            — especialistas em proteger patrimônios e garantir conformidade.
+            <span className="font-semibold text-foreground">BDS Engenharia</span> —
+            especialistas em proteger patrimônios e garantir conformidade.
           </p>
           <p>Engenheiro responsável registrado no CREA · Atendimento em todo o Brasil</p>
         </div>
       </footer>
+
+      <a
+        href={DEFAULT_WA}
+        aria-label="Falar no WhatsApp"
+        className="btn-pill btn-green fixed bottom-5 right-5 z-50 px-5 py-3.5 text-sm font-semibold shadow-lg"
+      >
+        Falar com engenheiro
+      </a>
     </div>
   );
 }
