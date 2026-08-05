@@ -671,6 +671,41 @@ function Index() {
           </div>
         </section>
 
+        {/* PARA QUEM */}
+        <section id="paraquem" className="border-y border-border bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-5 py-20">
+            <p className="eyebrow">Para quem atendemos</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              O laudo certo depende de quem vai ler ele
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Juiz, síndico, banco e fiscal não leem o mesmo documento. Escolha o seu perfil e
+              já falamos a sua língua no primeiro contato.
+            </p>
+            <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {perfis.map((p) => (
+                <div key={p.t} className="card-elevated flex flex-col rounded-xl p-6">
+                  <h3 className="text-base font-semibold">{p.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+                  <ul className="mt-4 grid gap-1.5">
+                    {p.i.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm">
+                        <Check className="text-accent-deep" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#orcamento"
+                    className="mt-5 text-sm font-semibold text-accent-deep hover:underline"
+                  >
+                    Solicitar orçamento →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
 
         {/* DIFERENÇA ENTRE DOCUMENTOS */}
