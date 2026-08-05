@@ -435,6 +435,10 @@ function Index() {
             <a className="transition-colors hover:text-foreground" href="#laudos">
               Laudos
             </a>
+            <a className="transition-colors hover:text-foreground" href="#setores">
+              Serviços
+            </a>
+
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
             </a>
