@@ -381,7 +381,7 @@ function Index() {
               Problemas
             </a>
             <a className="transition-colors hover:text-foreground" href="#laudos">
-              Laudos e preços
+              Laudos
             </a>
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
