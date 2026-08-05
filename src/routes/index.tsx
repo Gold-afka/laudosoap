@@ -5,7 +5,7 @@ import droneImg from "@/assets/obra-drone.jpg";
 import trincaImg from "@/assets/trinca.jpg";
 import avcbImg from "@/assets/avcb.jpg";
 
-const TITLE = "Laudos Técnicos com Engenheiro CREA | BDS Engenharia";
+const TITLE = "Laudos Técnicos com Engenheiro CREA | Oap Engenharia";
 const DESCRIPTION =
   "Laudos de engenharia civil, AVCB, perícias, LTA e programas de segurança do trabalho com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
 
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "BDS Engenharia",
+          name: "Oap Engenharia",
           description: DESCRIPTION,
           areaServed: "BR",
           serviceType: [
@@ -52,7 +52,7 @@ function waLink(msg: string) {
 }
 
 const DEFAULT_WA = waLink(
-  "Olá! Vim pelo site da BDS Engenharia e preciso de um orçamento de laudo técnico.",
+  "Olá! Vim pelo site da Oap Engenharia e preciso de um orçamento de laudo técnico.",
 );
 
 const heroBullets = [
@@ -389,7 +389,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#topo" className="flex items-baseline gap-2">
-            <span className="text-lg font-semibold tracking-tight">BDS</span>
+            <span className="text-lg font-semibold tracking-tight">Oap</span>
             <span className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               Engenharia
             </span>
@@ -416,35 +416,35 @@ function Index() {
 
       <main id="topo">
         {/* HERO */}
-        <section className="sky-panel relative overflow-hidden">
+        <section className="surface-deep-panel relative overflow-hidden">
           <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-28 lg:pt-24">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/70 px-3 py-1 text-xs font-medium">
-                <span className="size-1.5 rounded-full bg-accent-deep" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-surface-deep-foreground/25 bg-surface-deep-foreground/10 px-3 py-1 text-xs font-medium">
+                <span className="size-1.5 rounded-full bg-accent" />
                 Engenheiro responsável registrado no CREA
               </span>
               <h1 className="mt-5 text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
                 Resolva seu problema com um laudo técnico que tem ART e validade jurídica.
               </h1>
-              <p className="mt-5 max-w-xl text-lg text-foreground/70">
+              <p className="mt-5 max-w-xl text-lg text-surface-deep-foreground/75">
                 Segurança técnica, conformidade e atendimento rápido para empresas,
                 condomínios, indústrias e imóveis — em todo o Brasil.
               </p>
               <ul className="mt-6 grid gap-2 sm:grid-cols-2">
                 {heroBullets.map((b) => (
                   <li key={b} className="flex items-center gap-2 text-sm font-medium">
-                    <Check className="text-accent-deep" />
+                    <Check className="text-accent" />
                     {b}
                   </li>
                 ))}
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#orcamento" className="btn-pill btn-dark px-7 py-3.5 font-semibold">
+                <a href="#orcamento" className="btn-pill btn-green px-7 py-3.5 font-semibold">
                   Solicitar orçamento
                 </a>
                 <a
                   href={DEFAULT_WA}
-                  className="btn-pill btn-outline border-foreground/20 bg-background/70 px-7 py-3.5"
+                  className="btn-pill btn-outline border-surface-deep-foreground/30 bg-transparent px-7 py-3.5 text-surface-deep-foreground"
                 >
                   Falar com um engenheiro
                 </a>
@@ -453,18 +453,19 @@ function Index() {
             <figure className="relative">
               <img
                 src={heroImg}
-                alt="Engenheiro civil da BDS Engenharia em vistoria de fachada com trinca estrutural"
+                alt="Engenheiro civil da Oap Engenharia em vistoria de fachada com trinca estrutural"
                 width={1408}
                 height={1104}
                 className="w-full rounded-xl object-cover shadow-[var(--shadow-lift)]"
               />
-              <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-lg bg-background/95 p-4 text-xs leading-relaxed">
+              <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-lg bg-background/95 p-4 text-xs leading-relaxed text-foreground">
                 <strong className="font-semibold">Vistoria real.</strong> Todo laudo nasce de
                 uma inspeção em campo feita por engenheiro, nunca de um modelo pronto.
               </figcaption>
             </figure>
           </div>
         </section>
+
 
         {/* PÚBLICOS */}
         <section className="border-b border-border bg-secondary/70">
@@ -644,14 +645,14 @@ function Index() {
         {/* COMPARATIVO */}
         <section className="mx-auto max-w-4xl px-5 py-20">
           <p className="eyebrow">Comparativo</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Por que fechar com a BDS</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Por que fechar com a Oap</h2>
           <div className="mt-8 overflow-hidden rounded-xl border border-border">
             <div className="grid grid-cols-2 bg-card">
               <div className="border-r border-border px-5 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Outras empresas
               </div>
               <div className="bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wide text-primary-foreground">
-                BDS Engenharia
+                Oap Engenharia
               </div>
             </div>
             {comparativo.map(([a, b]) => (
@@ -747,7 +748,7 @@ function Index() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            <span className="font-semibold text-foreground">BDS Engenharia</span> —
+            <span className="font-semibold text-foreground">Oap Engenharia</span> —
             especialistas em proteger patrimônios e garantir conformidade.
           </p>
           <p>Engenheiro responsável registrado no CREA · Atendimento em todo o Brasil</p>
