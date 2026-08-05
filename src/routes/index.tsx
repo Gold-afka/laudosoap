@@ -416,35 +416,35 @@ function Index() {
 
       <main id="topo">
         {/* HERO */}
-        <section className="sky-panel relative overflow-hidden">
+        <section className="surface-deep-panel relative overflow-hidden">
           <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-28 lg:pt-24">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/70 px-3 py-1 text-xs font-medium">
-                <span className="size-1.5 rounded-full bg-accent-deep" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-surface-deep-foreground/25 bg-surface-deep-foreground/10 px-3 py-1 text-xs font-medium">
+                <span className="size-1.5 rounded-full bg-accent" />
                 Engenheiro responsável registrado no CREA
               </span>
               <h1 className="mt-5 text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
                 Resolva seu problema com um laudo técnico que tem ART e validade jurídica.
               </h1>
-              <p className="mt-5 max-w-xl text-lg text-foreground/70">
+              <p className="mt-5 max-w-xl text-lg text-surface-deep-foreground/75">
                 Segurança técnica, conformidade e atendimento rápido para empresas,
                 condomínios, indústrias e imóveis — em todo o Brasil.
               </p>
               <ul className="mt-6 grid gap-2 sm:grid-cols-2">
                 {heroBullets.map((b) => (
                   <li key={b} className="flex items-center gap-2 text-sm font-medium">
-                    <Check className="text-accent-deep" />
+                    <Check className="text-accent" />
                     {b}
                   </li>
                 ))}
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#orcamento" className="btn-pill btn-dark px-7 py-3.5 font-semibold">
+                <a href="#orcamento" className="btn-pill btn-green px-7 py-3.5 font-semibold">
                   Solicitar orçamento
                 </a>
                 <a
                   href={DEFAULT_WA}
-                  className="btn-pill btn-outline border-foreground/20 bg-background/70 px-7 py-3.5"
+                  className="btn-pill btn-outline border-surface-deep-foreground/30 bg-transparent px-7 py-3.5 text-surface-deep-foreground"
                 >
                   Falar com um engenheiro
                 </a>
@@ -453,18 +453,19 @@ function Index() {
             <figure className="relative">
               <img
                 src={heroImg}
-                alt="Engenheiro civil da BDS Engenharia em vistoria de fachada com trinca estrutural"
+                alt="Engenheiro civil da Oap Engenharia em vistoria de fachada com trinca estrutural"
                 width={1408}
                 height={1104}
                 className="w-full rounded-xl object-cover shadow-[var(--shadow-lift)]"
               />
-              <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-lg bg-background/95 p-4 text-xs leading-relaxed">
+              <figcaption className="absolute bottom-4 left-4 max-w-[16rem] rounded-lg bg-background/95 p-4 text-xs leading-relaxed text-foreground">
                 <strong className="font-semibold">Vistoria real.</strong> Todo laudo nasce de
                 uma inspeção em campo feita por engenheiro, nunca de um modelo pronto.
               </figcaption>
             </figure>
           </div>
         </section>
+
 
         {/* PÚBLICOS */}
         <section className="border-b border-border bg-secondary/70">
