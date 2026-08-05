@@ -199,6 +199,48 @@ const setores = [
   },
 ];
 
+const perfis = [
+  {
+    t: "Condomínios e síndicos",
+    d: "Fissura, infiltração ou AVCB vencido viram responsabilidade do síndico. Documentamos o risco antes da assembleia cobrar.",
+    i: ["Inspeção predial", "Laudo de fachada", "AVCB / acessibilidade"],
+  },
+  {
+    t: "Escritórios de advocacia",
+    d: "Assistência técnica que não deixa o laudo do perito passar sem contestação.",
+    i: ["Assistente técnico", "Quesitos e impugnação", "Usucapião / retificação"],
+  },
+  {
+    t: "Construtoras e incorporadoras",
+    d: "Vizinho reclamando de trinca custa muito mais caro do que uma cautelar feita antes.",
+    i: ["Cautelar de vizinhança", "Qualidade de obra", "Manual do proprietário"],
+  },
+  {
+    t: "Imobiliárias e bancos",
+    d: "Valor de imóvel defendido com metodologia NBR 14653 — não com achismo de mercado.",
+    i: ["Avaliação de imóveis", "Vistoria de entrada e saída", "Conflitos"],
+  },
+  {
+    t: "Indústrias e empresas",
+    d: "Fiscalização não avisa que vem. Deixamos a documentação técnica pronta antes.",
+    i: ["Laudos NR", "LTCAT / GRO", "Conformidade elétrica"],
+  },
+  {
+    t: "Pessoa física",
+    d: "Comprou, reformou e apareceu problema? A gente prova tecnicamente de quem é a culpa.",
+    i: ["Vício construtivo", "Patologias", "Auditoria de contrato"],
+  },
+];
+
+const preparar = [
+  { t: "Endereço completo", d: "Local exato da vistoria, com cidade e CEP." },
+  { t: "Há quanto tempo acontece", d: "Quando o problema apareceu e se está piorando." },
+  { t: "Fotos do local", d: "Mesmo de celular: fissuras, manchas, infiltrações." },
+  { t: "Plantas, se existirem", d: "Projeto, memorial ou documentos anteriores ajudam no escopo." },
+];
+
+
+
 const tiposDoc = [
 
   {
@@ -340,7 +382,8 @@ function QuoteForm() {
     cidade: "",
     tipo: "",
     metragem: "",
-    prazo: "",
+    tempo: "",
+    descricao: "",
   });
 
   const mensagem = `Olá! Sou ${form.nome || "(nome)"} e preciso de um orçamento.
@@ -348,7 +391,9 @@ Serviço: ${form.servico}
 Cidade: ${form.cidade || "-"}
 Tipo do imóvel: ${form.tipo || "-"}
 Metragem: ${form.metragem || "-"}
-Prazo desejado: ${form.prazo || "-"}`;
+Há quanto tempo acontece: ${form.tempo || "-"}
+Situação: ${form.descricao || "-"}`;
+
 
   const field =
     "w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-accent focus:ring-2 focus:ring-accent/25";
@@ -403,11 +448,18 @@ Prazo desejado: ${form.prazo || "-"}`;
           />
           <input
             className={field}
-            placeholder="Prazo desejado"
-            value={form.prazo}
-            onChange={(e) => setForm({ ...form, prazo: e.target.value })}
+            placeholder="Há quanto tempo o problema acontece"
+            value={form.tempo}
+            onChange={(e) => setForm({ ...form, tempo: e.target.value })}
           />
         </div>
+        <textarea
+          className={`${field} min-h-[88px] resize-y`}
+          placeholder="Descreva rapidamente a situação (o que apareceu, quem está exigindo o documento, prazo)"
+          value={form.descricao}
+          onChange={(e) => setForm({ ...form, descricao: e.target.value })}
+        />
+
       </div>
       <button type="submit" className="btn-pill btn-green mt-5 w-full font-semibold">
         Enviar e falar com o engenheiro
@@ -440,6 +492,10 @@ function Index() {
             <a className="transition-colors hover:text-foreground" href="#setores">
               Serviços
             </a>
+            <a className="transition-colors hover:text-foreground" href="#paraquem">
+              Para quem
+            </a>
+
 
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
@@ -629,6 +685,41 @@ function Index() {
           </div>
         </section>
 
+        {/* PARA QUEM */}
+        <section id="paraquem" className="border-y border-border bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-5 py-20">
+            <p className="eyebrow">Para quem atendemos</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              O laudo certo depende de quem vai ler ele
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Juiz, síndico, banco e fiscal não leem o mesmo documento. Escolha o seu perfil e
+              já falamos a sua língua no primeiro contato.
+            </p>
+            <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {perfis.map((p) => (
+                <div key={p.t} className="card-elevated flex flex-col rounded-xl p-6">
+                  <h3 className="text-base font-semibold">{p.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+                  <ul className="mt-4 grid gap-1.5">
+                    {p.i.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm">
+                        <Check className="text-accent-deep" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#orcamento"
+                    className="mt-5 text-sm font-semibold text-accent-deep hover:underline"
+                  >
+                    Solicitar orçamento →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
 
         {/* DIFERENÇA ENTRE DOCUMENTOS */}
@@ -772,9 +863,26 @@ function Index() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-8 rounded-xl border border-border bg-card p-6">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  Tenha isso em mãos e o orçamento sai hoje
+                </h3>
+                <ul className="mt-4 grid gap-3">
+                  {preparar.map((p) => (
+                    <li key={p.t} className="flex gap-2.5 text-sm">
+                      <Check className="mt-0.5 text-accent-deep" />
+                      <span>
+                        <strong className="font-semibold">{p.t}</strong>{" "}
+                        <span className="text-muted-foreground">— {p.d}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <a href={DEFAULT_WA} className="btn-pill btn-outline mt-7 bg-card">
                 Prefiro chamar no WhatsApp
               </a>
+
             </div>
             <QuoteForm />
           </div>
