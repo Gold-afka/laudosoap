@@ -148,7 +148,59 @@ const catalogoTrabalho = [
   },
 ];
 
+const setores = [
+  {
+    t: "Arquitetura",
+    d: "Projeto que valoriza o metro quadrado antes da primeira parede subir.",
+    i: ["Projetos residenciais, comerciais e industriais", "Interiores e paisagismo", "Projeto em BIM"],
+  },
+  {
+    t: "Engenharia Civil",
+    d: "Estrutura calculada para não virar problema (nem processo) depois.",
+    i: ["Projeto e cálculo estrutural", "Fundações", "Obras hidráulicas e saneamento"],
+  },
+  {
+    t: "Engenharia Elétrica e Mecânica",
+    d: "Energia e clima dimensionados para a carga real da sua operação.",
+    i: ["Instalações elétricas", "Iluminação e automação predial", "Climatização e ventilação"],
+  },
+  {
+    t: "Engenharia Ambiental",
+    d: "Conformidade ambiental sem interditar sua obra. Engenheiro ambiental próprio.",
+    i: ["Gestão de resíduos", "Drenagem urbana", "Saneamento e sustentabilidade"],
+  },
+  {
+    t: "Construção de Edifícios",
+    d: "Obra tocada com prazo, custo e qualidade em relatório — não em promessa.",
+    i: ["Residenciais e comerciais", "Industriais", "CNAE Divisão 41"],
+  },
+  {
+    t: "Infraestrutura",
+    d: "Obra pesada com engenharia que aguenta carga, tráfego e fiscalização.",
+    i: ["Estradas e pontes", "Ferrovias", "Portos e aeroportos"],
+  },
+  {
+    t: "Serviços Especializados",
+    d: "A execução técnica que a maioria das construtoras terceiriza mal.",
+    i: [
+      "Alvenaria, chapisco, reboco e revestimentos",
+      "Impermeabilização e limpeza de fachada",
+      "Andaimes, poços e manutenção predial",
+    ],
+  },
+  {
+    t: "Mão de Obra Operacional",
+    d: "Equipe qualificada e regularizada, pronta para entrar na sua obra.",
+    i: [
+      "Pedreiros, eletricistas e encanadores",
+      "Pintores e acabamento",
+      "Operadores de guindaste, grua e elevador de obra",
+    ],
+  },
+];
+
 const tiposDoc = [
+
   {
     t: "Laudo Técnico",
     f: "Documento conclusivo sobre condições, defeitos ou causas em obras e ambientes.",
