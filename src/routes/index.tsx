@@ -295,8 +295,10 @@ const faq = [
 const servicosSelect = [
   ...catalogoCivil.map((c) => c.n),
   ...catalogoTrabalho.map((c) => `${c.n} – Segurança do Trabalho`),
+  ...setores.map((s) => `${s.t} – projeto/obra`),
   "Ainda não sei qual preciso",
 ];
+
 
 function Check({ className = "" }: { className?: string }) {
   return (
