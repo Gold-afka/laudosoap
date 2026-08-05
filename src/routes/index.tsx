@@ -86,56 +86,38 @@ const catalogoCivil = [
   {
     n: "Laudo de Vistoria Técnica",
     d: "Registra o estado do imóvel antes de reformas, locações ou negociações.",
-    p: "R$ 500 – R$ 3.500",
-    o: "Depende da metragem e da profundidade da análise.",
   },
   {
     n: "Laudo de Acessibilidade",
     d: "Verifica conformidade com as normas de acessibilidade para pessoas com deficiência.",
-    p: "R$ 1.500 – R$ 5.000",
-    o: "Exigido em edificações públicas e condomínios.",
   },
   {
     n: "Laudo de Patologias Construtivas",
     d: "Identifica fissuras, infiltrações, recalques e outros problemas.",
-    p: "R$ 2.000 – R$ 6.000",
-    o: "Inclui diagnóstico das causas e recomendações.",
   },
   {
     n: "Laudo de Conformidade Técnica",
     d: "Confirma se a obra atende às normas da ABNT e às legislações locais.",
-    p: "R$ 2.000 – R$ 8.000",
-    o: "Confirma atendimento às normas ABNT.",
   },
   {
     n: "PAE – Plano de Abandono em Emergência",
     d: "Procedimentos de evacuação e resposta a emergências da edificação.",
-    p: "R$ 3.000 – R$ 10.000",
-    o: "Normalmente exigido em grandes empreendimentos.",
   },
   {
     n: "Laudo de Impacto de Vizinhança",
     d: "Avalia os efeitos do empreendimento sobre o entorno urbano.",
-    p: "R$ 5.000 – R$ 15.000+",
-    o: "Necessário para aprovação de empreendimentos de grande porte.",
   },
   {
     n: "LTA – Laudo Técnico de Avaliação",
     d: "Documento técnico exigido pela Vigilância Sanitária.",
-    p: "R$ 1.500 – R$ 4.000",
-    o: "Usado em clínicas, hospitais e estabelecimentos de saúde.",
   },
   {
     n: "Laudo de Perícia Técnica",
     d: "Análise detalhada para processos judiciais e administrativos.",
-    p: "R$ 2.500 – R$ 10.000",
-    o: "Valores sobem em perícias judiciais complexas.",
   },
   {
     n: "Laudo de Bombeiro (AVCB / CLCB)",
     d: "Regularização da edificação junto ao Corpo de Bombeiros.",
-    p: "R$ 1.500 – R$ 8.000",
-    o: "Depende da área construída e do risco da edificação.",
   },
 ];
 
@@ -226,7 +208,7 @@ const indicadores = [
 const faq = [
   {
     q: "Quanto custa um laudo técnico?",
-    a: "O valor depende da finalidade, metragem, localização e complexidade. As faixas de referência estão na tabela acima; o orçamento final é fechado após três perguntas rápidas, sem custo.",
+    a: "O valor depende da finalidade, metragem, localização e complexidade. Por isso fechamos o orçamento após um diagnóstico inicial rápido e gratuito, sem compromisso.",
   },
   {
     q: "Quanto tempo demora?",
@@ -399,7 +381,7 @@ function Index() {
               Problemas
             </a>
             <a className="transition-colors hover:text-foreground" href="#laudos">
-              Laudos e preços
+              Laudos
             </a>
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
@@ -508,16 +490,14 @@ function Index() {
           </div>
         </section>
 
-        {/* LAUDOS E PREÇOS */}
+        {/* LAUDOS */}
         <section id="laudos" className="border-y border-border bg-secondary/50">
           <div className="mx-auto max-w-6xl px-5 py-20">
             <p className="eyebrow">Laudos em engenharia civil</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">
-              O que emitimos — e a faixa de investimento
-            </h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">O que emitimos</h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Faixas médias de mercado para você ter referência antes de conversar. O valor
-              final depende de finalidade, metragem, localização e complexidade.
+              Cada documento é elaborado por engenheiro responsável, com ART quando exigido e
+              validade jurídica. O valor final é definido após o diagnóstico inicial, sem custo.
             </p>
             <div className="mt-9 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {catalogoCivil.map((c) => (
@@ -526,8 +506,6 @@ function Index() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {c.d}
                   </p>
-                  <p className="mt-4 font-mono text-sm font-medium text-accent-deep">{c.p}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{c.o}</p>
                   <a
                     href="#orcamento"
                     className="btn-pill btn-outline mt-4 w-full text-sm hover:bg-secondary"
