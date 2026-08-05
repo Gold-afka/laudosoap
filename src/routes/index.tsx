@@ -208,7 +208,7 @@ const indicadores = [
 const faq = [
   {
     q: "Quanto custa um laudo técnico?",
-    a: "O valor depende da finalidade, metragem, localização e complexidade. As faixas de referência estão na tabela acima; o orçamento final é fechado após três perguntas rápidas, sem custo.",
+    a: "O valor depende da finalidade, metragem, localização e complexidade. Por isso fechamos o orçamento após um diagnóstico inicial rápido e gratuito, sem compromisso.",
   },
   {
     q: "Quanto tempo demora?",
