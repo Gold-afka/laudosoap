@@ -199,6 +199,48 @@ const setores = [
   },
 ];
 
+const perfis = [
+  {
+    t: "Condomínios e síndicos",
+    d: "Fissura, infiltração ou AVCB vencido viram responsabilidade do síndico. Documentamos o risco antes da assembleia cobrar.",
+    i: ["Inspeção predial", "Laudo de fachada", "AVCB / acessibilidade"],
+  },
+  {
+    t: "Escritórios de advocacia",
+    d: "Assistência técnica que não deixa o laudo do perito passar sem contestação.",
+    i: ["Assistente técnico", "Quesitos e impugnação", "Usucapião / retificação"],
+  },
+  {
+    t: "Construtoras e incorporadoras",
+    d: "Vizinho reclamando de trinca custa muito mais caro do que uma cautelar feita antes.",
+    i: ["Cautelar de vizinhança", "Qualidade de obra", "Manual do proprietário"],
+  },
+  {
+    t: "Imobiliárias e bancos",
+    d: "Valor de imóvel defendido com metodologia NBR 14653 — não com achismo de mercado.",
+    i: ["Avaliação de imóveis", "Vistoria de entrada e saída", "Conflitos"],
+  },
+  {
+    t: "Indústrias e empresas",
+    d: "Fiscalização não avisa que vem. Deixamos a documentação técnica pronta antes.",
+    i: ["Laudos NR", "LTCAT / GRO", "Conformidade elétrica"],
+  },
+  {
+    t: "Pessoa física",
+    d: "Comprou, reformou e apareceu problema? A gente prova tecnicamente de quem é a culpa.",
+    i: ["Vício construtivo", "Patologias", "Auditoria de contrato"],
+  },
+];
+
+const preparar = [
+  { t: "Endereço completo", d: "Local exato da vistoria, com cidade e CEP." },
+  { t: "Há quanto tempo acontece", d: "Quando o problema apareceu e se está piorando." },
+  { t: "Fotos do local", d: "Mesmo de celular: fissuras, manchas, infiltrações." },
+  { t: "Plantas, se existirem", d: "Projeto, memorial ou documentos anteriores ajudam no escopo." },
+];
+
+
+
 const tiposDoc = [
 
   {
