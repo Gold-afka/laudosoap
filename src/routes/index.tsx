@@ -86,56 +86,38 @@ const catalogoCivil = [
   {
     n: "Laudo de Vistoria Técnica",
     d: "Registra o estado do imóvel antes de reformas, locações ou negociações.",
-    p: "R$ 500 – R$ 3.500",
-    o: "Depende da metragem e da profundidade da análise.",
   },
   {
     n: "Laudo de Acessibilidade",
     d: "Verifica conformidade com as normas de acessibilidade para pessoas com deficiência.",
-    p: "R$ 1.500 – R$ 5.000",
-    o: "Exigido em edificações públicas e condomínios.",
   },
   {
     n: "Laudo de Patologias Construtivas",
     d: "Identifica fissuras, infiltrações, recalques e outros problemas.",
-    p: "R$ 2.000 – R$ 6.000",
-    o: "Inclui diagnóstico das causas e recomendações.",
   },
   {
     n: "Laudo de Conformidade Técnica",
     d: "Confirma se a obra atende às normas da ABNT e às legislações locais.",
-    p: "R$ 2.000 – R$ 8.000",
-    o: "Confirma atendimento às normas ABNT.",
   },
   {
     n: "PAE – Plano de Abandono em Emergência",
     d: "Procedimentos de evacuação e resposta a emergências da edificação.",
-    p: "R$ 3.000 – R$ 10.000",
-    o: "Normalmente exigido em grandes empreendimentos.",
   },
   {
     n: "Laudo de Impacto de Vizinhança",
     d: "Avalia os efeitos do empreendimento sobre o entorno urbano.",
-    p: "R$ 5.000 – R$ 15.000+",
-    o: "Necessário para aprovação de empreendimentos de grande porte.",
   },
   {
     n: "LTA – Laudo Técnico de Avaliação",
     d: "Documento técnico exigido pela Vigilância Sanitária.",
-    p: "R$ 1.500 – R$ 4.000",
-    o: "Usado em clínicas, hospitais e estabelecimentos de saúde.",
   },
   {
     n: "Laudo de Perícia Técnica",
     d: "Análise detalhada para processos judiciais e administrativos.",
-    p: "R$ 2.500 – R$ 10.000",
-    o: "Valores sobem em perícias judiciais complexas.",
   },
   {
     n: "Laudo de Bombeiro (AVCB / CLCB)",
     d: "Regularização da edificação junto ao Corpo de Bombeiros.",
-    p: "R$ 1.500 – R$ 8.000",
-    o: "Depende da área construída e do risco da edificação.",
   },
 ];
 
