@@ -490,16 +490,14 @@ function Index() {
           </div>
         </section>
 
-        {/* LAUDOS E PREÇOS */}
+        {/* LAUDOS */}
         <section id="laudos" className="border-y border-border bg-secondary/50">
           <div className="mx-auto max-w-6xl px-5 py-20">
             <p className="eyebrow">Laudos em engenharia civil</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">
-              O que emitimos — e a faixa de investimento
-            </h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">O que emitimos</h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Faixas médias de mercado para você ter referência antes de conversar. O valor
-              final depende de finalidade, metragem, localização e complexidade.
+              Cada documento é elaborado por engenheiro responsável, com ART quando exigido e
+              validade jurídica. O valor final é definido após o diagnóstico inicial, sem custo.
             </p>
             <div className="mt-9 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {catalogoCivil.map((c) => (
@@ -508,8 +506,6 @@ function Index() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {c.d}
                   </p>
-                  <p className="mt-4 font-mono text-sm font-medium text-accent-deep">{c.p}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{c.o}</p>
                   <a
                     href="#orcamento"
                     className="btn-pill btn-outline mt-4 w-full text-sm hover:bg-secondary"
