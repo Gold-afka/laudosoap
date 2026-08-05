@@ -584,6 +584,47 @@ function Index() {
           </div>
         </section>
 
+        {/* SETORES */}
+        <section id="setores" className="mx-auto max-w-6xl px-5 py-20">
+          <p className="eyebrow">Projeto, obra e mão de obra</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">
+            Do desenho à entrega das chaves, com um único responsável técnico
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            Contratar cinco fornecedores diferentes é o jeito mais caro de atrasar uma obra.
+            Aqui, arquitetura, engenharia, execução e equipe respondem para o mesmo engenheiro.
+          </p>
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {setores.map((s) => (
+              <div key={s.t} className="card-elevated flex flex-col rounded-xl p-5">
+                <h3 className="text-sm font-semibold">{s.t}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {s.i.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-full bg-secondary px-2.5 py-1 text-[11px] leading-tight text-muted-foreground"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-secondary/70 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted-foreground">
+              Não achou o seu serviço na lista? Descreva a obra — se for engenharia, a gente
+              resolve ou diz na hora quem resolve.
+            </p>
+            <a href="#orcamento" className="btn-pill btn-green shrink-0 font-semibold">
+              Pedir orçamento agora
+            </a>
+          </div>
+        </section>
+
+
+
         {/* DIFERENÇA ENTRE DOCUMENTOS */}
         <section className="mx-auto max-w-6xl px-5 py-20">
           <p className="eyebrow">Entenda antes de contratar</p>
