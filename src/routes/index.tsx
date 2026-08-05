@@ -445,11 +445,18 @@ Prazo desejado: ${form.prazo || "-"}`;
           />
           <input
             className={field}
-            placeholder="Prazo desejado"
-            value={form.prazo}
-            onChange={(e) => setForm({ ...form, prazo: e.target.value })}
+            placeholder="Há quanto tempo o problema acontece"
+            value={form.tempo}
+            onChange={(e) => setForm({ ...form, tempo: e.target.value })}
           />
         </div>
+        <textarea
+          className={`${field} min-h-[88px] resize-y`}
+          placeholder="Descreva rapidamente a situação (o que apareceu, quem está exigindo o documento, prazo)"
+          value={form.descricao}
+          onChange={(e) => setForm({ ...form, descricao: e.target.value })}
+        />
+
       </div>
       <button type="submit" className="btn-pill btn-green mt-5 w-full font-semibold">
         Enviar e falar com o engenheiro
