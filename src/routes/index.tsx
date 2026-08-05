@@ -859,9 +859,26 @@ function Index() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-8 rounded-xl border border-border bg-card p-6">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  Tenha isso em mãos e o orçamento sai hoje
+                </h3>
+                <ul className="mt-4 grid gap-3">
+                  {preparar.map((p) => (
+                    <li key={p.t} className="flex gap-2.5 text-sm">
+                      <Check className="mt-0.5 text-accent-deep" />
+                      <span>
+                        <strong className="font-semibold">{p.t}</strong>{" "}
+                        <span className="text-muted-foreground">— {p.d}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <a href={DEFAULT_WA} className="btn-pill btn-outline mt-7 bg-card">
                 Prefiro chamar no WhatsApp
               </a>
+
             </div>
             <QuoteForm />
           </div>
