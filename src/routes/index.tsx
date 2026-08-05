@@ -148,7 +148,59 @@ const catalogoTrabalho = [
   },
 ];
 
+const setores = [
+  {
+    t: "Arquitetura",
+    d: "Projeto que valoriza o metro quadrado antes da primeira parede subir.",
+    i: ["Projetos residenciais, comerciais e industriais", "Interiores e paisagismo", "Projeto em BIM"],
+  },
+  {
+    t: "Engenharia Civil",
+    d: "Estrutura calculada para não virar problema (nem processo) depois.",
+    i: ["Projeto e cálculo estrutural", "Fundações", "Obras hidráulicas e saneamento"],
+  },
+  {
+    t: "Engenharia Elétrica e Mecânica",
+    d: "Energia e clima dimensionados para a carga real da sua operação.",
+    i: ["Instalações elétricas", "Iluminação e automação predial", "Climatização e ventilação"],
+  },
+  {
+    t: "Engenharia Ambiental",
+    d: "Conformidade ambiental sem interditar sua obra. Engenheiro ambiental próprio.",
+    i: ["Gestão de resíduos", "Drenagem urbana", "Saneamento e sustentabilidade"],
+  },
+  {
+    t: "Construção de Edifícios",
+    d: "Obra tocada com prazo, custo e qualidade em relatório — não em promessa.",
+    i: ["Residenciais e comerciais", "Industriais", "CNAE Divisão 41"],
+  },
+  {
+    t: "Infraestrutura",
+    d: "Obra pesada com engenharia que aguenta carga, tráfego e fiscalização.",
+    i: ["Estradas e pontes", "Ferrovias", "Portos e aeroportos"],
+  },
+  {
+    t: "Serviços Especializados",
+    d: "A execução técnica que a maioria das construtoras terceiriza mal.",
+    i: [
+      "Alvenaria, chapisco, reboco e revestimentos",
+      "Impermeabilização e limpeza de fachada",
+      "Andaimes, poços e manutenção predial",
+    ],
+  },
+  {
+    t: "Mão de Obra Operacional",
+    d: "Equipe qualificada e regularizada, pronta para entrar na sua obra.",
+    i: [
+      "Pedreiros, eletricistas e encanadores",
+      "Pintores e acabamento",
+      "Operadores de guindaste, grua e elevador de obra",
+    ],
+  },
+];
+
 const tiposDoc = [
+
   {
     t: "Laudo Técnico",
     f: "Documento conclusivo sobre condições, defeitos ou causas em obras e ambientes.",
@@ -243,8 +295,10 @@ const faq = [
 const servicosSelect = [
   ...catalogoCivil.map((c) => c.n),
   ...catalogoTrabalho.map((c) => `${c.n} – Segurança do Trabalho`),
+  ...setores.map((s) => `${s.t} – projeto/obra`),
   "Ainda não sei qual preciso",
 ];
+
 
 function Check({ className = "" }: { className?: string }) {
   return (
@@ -383,6 +437,10 @@ function Index() {
             <a className="transition-colors hover:text-foreground" href="#laudos">
               Laudos
             </a>
+            <a className="transition-colors hover:text-foreground" href="#setores">
+              Serviços
+            </a>
+
             <a className="transition-colors hover:text-foreground" href="#processo">
               Como funciona
             </a>
@@ -531,6 +589,47 @@ function Index() {
             </div>
           </div>
         </section>
+
+        {/* SETORES */}
+        <section id="setores" className="mx-auto max-w-6xl px-5 py-20">
+          <p className="eyebrow">Projeto, obra e mão de obra</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">
+            Do desenho à entrega das chaves, com um único responsável técnico
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            Contratar cinco fornecedores diferentes é o jeito mais caro de atrasar uma obra.
+            Aqui, arquitetura, engenharia, execução e equipe respondem para o mesmo engenheiro.
+          </p>
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {setores.map((s) => (
+              <div key={s.t} className="card-elevated flex flex-col rounded-xl p-5">
+                <h3 className="text-sm font-semibold">{s.t}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {s.i.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-full bg-secondary px-2.5 py-1 text-[11px] leading-tight text-muted-foreground"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-secondary/70 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted-foreground">
+              Não achou o seu serviço na lista? Descreva a obra — se for engenharia, a gente
+              resolve ou diz na hora quem resolve.
+            </p>
+            <a href="#orcamento" className="btn-pill btn-green shrink-0 font-semibold">
+              Pedir orçamento agora
+            </a>
+          </div>
+        </section>
+
+
 
         {/* DIFERENÇA ENTRE DOCUMENTOS */}
         <section className="mx-auto max-w-6xl px-5 py-20">
