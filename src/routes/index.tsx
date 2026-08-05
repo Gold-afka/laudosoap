@@ -382,7 +382,8 @@ function QuoteForm() {
     cidade: "",
     tipo: "",
     metragem: "",
-    prazo: "",
+    tempo: "",
+    descricao: "",
   });
 
   const mensagem = `Olá! Sou ${form.nome || "(nome)"} e preciso de um orçamento.
@@ -390,7 +391,9 @@ Serviço: ${form.servico}
 Cidade: ${form.cidade || "-"}
 Tipo do imóvel: ${form.tipo || "-"}
 Metragem: ${form.metragem || "-"}
-Prazo desejado: ${form.prazo || "-"}`;
+Há quanto tempo acontece: ${form.tempo || "-"}
+Situação: ${form.descricao || "-"}`;
+
 
   const field =
     "w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-accent focus:ring-2 focus:ring-accent/25";
