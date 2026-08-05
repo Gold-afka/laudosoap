@@ -5,7 +5,7 @@ import droneImg from "@/assets/obra-drone.jpg";
 import trincaImg from "@/assets/trinca.jpg";
 import avcbImg from "@/assets/avcb.jpg";
 
-const TITLE = "Laudos Técnicos com Engenheiro CREA | BDS Engenharia";
+const TITLE = "Laudos Técnicos com Engenheiro CREA | Oap Engenharia";
 const DESCRIPTION =
   "Laudos de engenharia civil, AVCB, perícias, LTA e programas de segurança do trabalho com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
 
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "BDS Engenharia",
+          name: "Oap Engenharia",
           description: DESCRIPTION,
           areaServed: "BR",
           serviceType: [
@@ -52,7 +52,7 @@ function waLink(msg: string) {
 }
 
 const DEFAULT_WA = waLink(
-  "Olá! Vim pelo site da BDS Engenharia e preciso de um orçamento de laudo técnico.",
+  "Olá! Vim pelo site da Oap Engenharia e preciso de um orçamento de laudo técnico.",
 );
 
 const heroBullets = [
@@ -389,7 +389,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#topo" className="flex items-baseline gap-2">
-            <span className="text-lg font-semibold tracking-tight">BDS</span>
+            <span className="text-lg font-semibold tracking-tight">Oap</span>
             <span className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               Engenharia
             </span>
@@ -645,14 +645,14 @@ function Index() {
         {/* COMPARATIVO */}
         <section className="mx-auto max-w-4xl px-5 py-20">
           <p className="eyebrow">Comparativo</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Por que fechar com a BDS</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl">Por que fechar com a Oap</h2>
           <div className="mt-8 overflow-hidden rounded-xl border border-border">
             <div className="grid grid-cols-2 bg-card">
               <div className="border-r border-border px-5 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Outras empresas
               </div>
               <div className="bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wide text-primary-foreground">
-                BDS Engenharia
+                Oap Engenharia
               </div>
             </div>
             {comparativo.map(([a, b]) => (
@@ -748,7 +748,7 @@ function Index() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            <span className="font-semibold text-foreground">BDS Engenharia</span> —
+            <span className="font-semibold text-foreground">Oap Engenharia</span> —
             especialistas em proteger patrimônios e garantir conformidade.
           </p>
           <p>Engenheiro responsável registrado no CREA · Atendimento em todo o Brasil</p>
