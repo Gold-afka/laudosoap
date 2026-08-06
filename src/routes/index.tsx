@@ -954,6 +954,7 @@ function Index() {
         aria-label="Falar no WhatsApp"
         className="btn-pill btn-green fixed bottom-5 right-5 z-50 px-5 py-3.5 text-sm font-semibold shadow-lg"
       >
+        <WhatsAppIcon className="size-5" />
         Falar com engenheiro
       </a>
     </div>
