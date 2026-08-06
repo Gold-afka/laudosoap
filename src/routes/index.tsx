@@ -390,18 +390,13 @@ function QuoteForm() {
     servico: servicosSelect[0],
     cidade: "",
     tipo: "",
-    metragem: "",
-    tempo: "",
-    descricao: "",
   });
 
   const mensagem = `Olá! Sou ${form.nome || "(nome)"} e preciso de um orçamento.
 Serviço: ${form.servico}
 Cidade: ${form.cidade || "-"}
-Tipo do imóvel: ${form.tipo || "-"}
-Metragem: ${form.metragem || "-"}
-Há quanto tempo acontece: ${form.tempo || "-"}
-Situação: ${form.descricao || "-"}`;
+Tipo do imóvel: ${form.tipo || "-"}`;
+
 
 
   const field =
@@ -417,7 +412,7 @@ Situação: ${form.descricao || "-"}`;
     >
       <h3 className="text-xl">Solicite seu orçamento</h3>
       <p className="mt-1.5 text-sm text-muted-foreground">
-        Seis campos, resposta de um engenheiro no mesmo dia útil.
+        Quatro campos, resposta de um engenheiro no mesmo dia útil.
       </p>
       <div className="mt-5 grid gap-3">
         <input
@@ -449,25 +444,8 @@ Situação: ${form.descricao || "-"}`;
             value={form.tipo}
             onChange={(e) => setForm({ ...form, tipo: e.target.value })}
           />
-          <input
-            className={field}
-            placeholder="Metragem aproximada"
-            value={form.metragem}
-            onChange={(e) => setForm({ ...form, metragem: e.target.value })}
-          />
-          <input
-            className={field}
-            placeholder="Há quanto tempo o problema acontece"
-            value={form.tempo}
-            onChange={(e) => setForm({ ...form, tempo: e.target.value })}
-          />
         </div>
-        <textarea
-          className={`${field} min-h-[88px] resize-y`}
-          placeholder="Descreva rapidamente a situação (o que apareceu, quem está exigindo o documento, prazo)"
-          value={form.descricao}
-          onChange={(e) => setForm({ ...form, descricao: e.target.value })}
-        />
+
 
       </div>
       <button type="submit" className="btn-pill btn-green mt-5 w-full font-semibold">
