@@ -601,12 +601,10 @@ function Index() {
             <a className="transition-colors hover:text-foreground" href="#problemas">
               Problemas
             </a>
-            <a className="transition-colors hover:text-foreground" href="#laudos">
-              Laudos
+            <a className="transition-colors hover:text-foreground" href="#areas">
+              Áreas de atuação
             </a>
-            <a className="transition-colors hover:text-foreground" href="#setores">
-              Serviços
-            </a>
+
             <a className="transition-colors hover:text-foreground" href="#paraquem">
               Para quem
             </a>
