@@ -445,7 +445,7 @@ function WhatsAppIcon({ className = "size-5" }: { className?: string }) {
 function QuoteForm() {
   const [form, setForm] = useState({
     nome: "",
-    servico: servicosSelect[0],
+    servico: "Ainda não sei qual preciso",
     cidade: "",
     tipo: "",
   });
@@ -485,10 +485,16 @@ Tipo do imóvel: ${form.tipo || "-"}`;
           value={form.servico}
           onChange={(e) => setForm({ ...form, servico: e.target.value })}
         >
-          {servicosSelect.map((s) => (
-            <option key={s}>{s}</option>
+          <option>Ainda não sei qual preciso</option>
+          {servicosSelect.map((g) => (
+            <optgroup key={g.grupo} label={g.grupo}>
+              {g.itens.map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </optgroup>
           ))}
         </select>
+
         <div className="grid gap-3 sm:grid-cols-2">
           <input
             className={field}
