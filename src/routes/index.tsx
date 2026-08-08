@@ -148,56 +148,115 @@ const catalogoTrabalho = [
   },
 ];
 
-const setores = [
+const nichos = [
   {
-    t: "Arquitetura",
-    d: "Projeto que valoriza o metro quadrado antes da primeira parede subir.",
-    i: ["Projetos residenciais, comerciais e industriais", "Interiores e paisagismo", "Projeto em BIM"],
+    k: "laudos",
+    tab: "Laudos e Perícias",
+    eyebrow: "Engenharia diagnóstica",
+    t: "Laudos, perícias e vistorias",
+    d: "Quando o problema já apareceu — ou quando alguém vai cobrar responsabilidade por ele. Documento com engenheiro responsável, ART e validade jurídica.",
+    i: catalogoCivil,
   },
   {
-    t: "Engenharia Civil",
-    d: "Estrutura calculada para não virar problema (nem processo) depois.",
-    i: ["Projeto e cálculo estrutural", "Fundações", "Obras hidráulicas e saneamento"],
+    k: "trabalho",
+    tab: "Segurança do Trabalho",
+    eyebrow: "Conformidade com as NRs",
+    t: "Segurança e saúde ocupacional",
+    d: "Fiscalização, INSS e processo trabalhista não avisam antes de chegar. Programas e laudos obrigatórios em dia, com responsável técnico.",
+    i: catalogoTrabalho,
   },
   {
-    t: "Engenharia Elétrica e Mecânica",
-    d: "Energia e clima dimensionados para a carga real da sua operação.",
-    i: ["Instalações elétricas", "Iluminação e automação predial", "Climatização e ventilação"],
-  },
-  {
-    t: "Engenharia Ambiental",
-    d: "Conformidade ambiental sem interditar sua obra. Engenheiro ambiental próprio.",
-    i: ["Gestão de resíduos", "Drenagem urbana", "Saneamento e sustentabilidade"],
-  },
-  {
-    t: "Construção de Edifícios",
-    d: "Obra tocada com prazo, custo e qualidade em relatório — não em promessa.",
-    i: ["Residenciais e comerciais", "Industriais", "CNAE Divisão 41"],
-  },
-  {
-    t: "Infraestrutura",
-    d: "Obra pesada com engenharia que aguenta carga, tráfego e fiscalização.",
-    i: ["Estradas e pontes", "Ferrovias", "Portos e aeroportos"],
-  },
-  {
-    t: "Serviços Especializados",
-    d: "A execução técnica que a maioria das construtoras terceiriza mal.",
+    k: "arquitetura",
+    tab: "Arquitetura e Projetos",
+    eyebrow: "Antes da primeira parede",
+    t: "Arquitetura, interiores e projetos",
+    d: "Projeto é onde se ganha (ou se perde) dinheiro. Aqui o metro quadrado é decidido no papel, não improvisado na obra.",
     i: [
-      "Alvenaria, chapisco, reboco e revestimentos",
-      "Impermeabilização e limpeza de fachada",
-      "Andaimes, poços e manutenção predial",
+      { n: "Projeto arquitetônico", d: "Residencial, comercial e industrial, do estudo preliminar ao executivo." },
+      { n: "Interiores e paisagismo", d: "Ambientes detalhados, com especificação de acabamentos e mobiliário." },
+      { n: "Projeto em BIM", d: "Modelagem 3D integrada, com quantitativos e menos surpresa em obra." },
+      { n: "Compatibilização de projetos", d: "Arquitetura, estrutura e instalações conversando antes do retrabalho." },
+      { n: "Aprovação em prefeitura", d: "Documentação, protocolo e acompanhamento até o alvará." },
+      { n: "Regularização e habite-se", d: "Imóvel fora do papel volta a existir legalmente." },
     ],
   },
   {
-    t: "Mão de Obra Operacional",
-    d: "Equipe qualificada e regularizada, pronta para entrar na sua obra.",
+    k: "estrutural",
+    tab: "Engenharia Civil e Estrutural",
+    eyebrow: "Cálculo e estrutura",
+    t: "Engenharia civil, estrutura e fundações",
+    d: "Estrutura calculada para não virar problema (nem processo) depois. Cada peça dimensionada, cada carga justificada.",
     i: [
-      "Pedreiros, eletricistas e encanadores",
-      "Pintores e acabamento",
-      "Operadores de guindaste, grua e elevador de obra",
+      { n: "Projeto e cálculo estrutural", d: "Concreto armado, metálica e madeira, com memorial de cálculo." },
+      { n: "Fundações", d: "Solução definida a partir do solo real, não do palpite do vizinho." },
+      { n: "Reforço estrutural", d: "Recuperação de estruturas com fissura, recalque ou sobrecarga." },
+      { n: "Obras hidráulicas", d: "Reservatórios, redes e sistemas prediais dimensionados." },
+      { n: "Orçamento e planilha de obra", d: "Custo real por etapa, para você negociar sabendo o preço." },
+      { n: "Gerenciamento e fiscalização", d: "Alguém do seu lado conferindo o que a construtora entrega." },
+    ],
+  },
+  {
+    k: "eletrica",
+    tab: "Elétrica e Mecânica",
+    eyebrow: "Instalações e energia",
+    t: "Engenharia elétrica, mecânica e automação",
+    d: "Energia e clima dimensionados para a carga real da sua operação — e não para o susto da próxima conta.",
+    i: [
+      { n: "Projeto de instalações elétricas", d: "Baixa e média tensão, com laudo e ART." },
+      { n: "SPDA e aterramento", d: "Proteção contra descargas atmosféricas conforme NBR 5419." },
+      { n: "Laudo NR-10", d: "Prontuário e conformidade das instalações elétricas." },
+      { n: "Iluminação e automação predial", d: "Eficiência energética e controle inteligente." },
+      { n: "Climatização e ventilação", d: "HVAC dimensionado por carga térmica, não por chute." },
+      { n: "Energia solar fotovoltaica", d: "Projeto, dimensionamento e homologação junto à concessionária." },
+    ],
+  },
+  {
+    k: "ambiental",
+    tab: "Ambiental e Saneamento",
+    eyebrow: "Licença e conformidade",
+    t: "Engenharia ambiental e sanitária",
+    d: "Conformidade ambiental sem interditar sua obra. Engenheiro ambiental próprio, do estudo ao protocolo no órgão.",
+    i: [
+      { n: "Licenciamento ambiental", d: "Prévia, instalação e operação, com acompanhamento do processo." },
+      { n: "Gestão de resíduos (PGRS/PGRCC)", d: "Plano exigido em obras e operações industriais." },
+      { n: "Drenagem urbana", d: "Água da chuva onde ela deve estar, não dentro do imóvel." },
+      { n: "Saneamento e tratamento de efluentes", d: "Redes, ETE e soluções individuais dimensionadas." },
+      { n: "Estudo de impacto de vizinhança", d: "EIV/RIVI para aprovação de empreendimentos." },
+      { n: "Outorga e recursos hídricos", d: "Poços, captação e uso da água regularizados." },
+    ],
+  },
+  {
+    k: "obras",
+    tab: "Construção e Infraestrutura",
+    eyebrow: "Execução de obra",
+    t: "Construção de edifícios e infraestrutura",
+    d: "Obra tocada com prazo, custo e qualidade em relatório — não em promessa de WhatsApp.",
+    i: [
+      { n: "Edificações residenciais e comerciais", d: "Da fundação à entrega das chaves (CNAE 41)." },
+      { n: "Obras industriais", d: "Galpões, plantas e ampliações com cronograma físico-financeiro." },
+      { n: "Reformas e retrofit", d: "Modernização de prédios antigos sem parar a operação." },
+      { n: "Estradas, pontes e terraplenagem", d: "Obra pesada que aguenta carga, tráfego e fiscalização." },
+      { n: "Redes e infraestrutura urbana", d: "Água, esgoto, drenagem e pavimentação." },
+      { n: "Manutenção predial preventiva", d: "Plano de manutenção conforme NBR 5674." },
+    ],
+  },
+  {
+    k: "execucao",
+    tab: "Serviços e Mão de Obra",
+    eyebrow: "Equipe em campo",
+    t: "Serviços especializados e mão de obra",
+    d: "A execução técnica que a maioria das construtoras terceiriza mal. Equipe qualificada, regularizada e supervisionada.",
+    i: [
+      { n: "Alvenaria e revestimentos", d: "Chapisco, reboco, gesso, pisos e acabamentos." },
+      { n: "Impermeabilização", d: "Lajes, reservatórios e áreas molhadas com garantia técnica." },
+      { n: "Limpeza e recuperação de fachada", d: "Trabalho em altura com equipe treinada em NR-35." },
+      { n: "Andaimes, poços e escoramento", d: "Montagem e liberação com responsável técnico." },
+      { n: "Equipes operacionais", d: "Pedreiros, eletricistas, encanadores e pintores." },
+      { n: "Operadores de equipamento", d: "Guindaste, grua e elevador de obra com certificação." },
     ],
   },
 ];
+
 
 const perfis = [
   {
@@ -334,12 +393,11 @@ const faq = [
   },
 ];
 
-const servicosSelect = [
-  ...catalogoCivil.map((c) => c.n),
-  ...catalogoTrabalho.map((c) => `${c.n} – Segurança do Trabalho`),
-  ...setores.map((s) => `${s.t} – projeto/obra`),
-  "Ainda não sei qual preciso",
-];
+const servicosSelect = nichos.map((n) => ({
+  grupo: n.tab,
+  itens: n.i.map((c) => c.n),
+}));
+
 
 
 function Check({ className = "" }: { className?: string }) {
@@ -384,10 +442,74 @@ function WhatsAppIcon({ className = "size-5" }: { className?: string }) {
   );
 }
 
+function Nichos() {
+  const [ativo, setAtivo] = useState(nichos[0]!.k);
+  const atual = nichos.find((n) => n.k === ativo) ?? nichos[0]!;
+
+
+  return (
+    <div className="mt-9">
+      <div className="flex flex-wrap gap-2">
+        {nichos.map((n) => {
+          const on = n.k === atual.k;
+          return (
+            <button
+              key={n.k}
+              type="button"
+              onClick={() => setAtivo(n.k)}
+              className={`btn-pill px-4 py-2 text-sm font-medium ${
+                on
+                  ? "btn-dark shadow-sm"
+                  : "border border-border bg-card text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {n.tab}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-7 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="card-elevated flex flex-col rounded-2xl p-7">
+          <p className="eyebrow">{atual.eyebrow}</p>
+          <h3 className="mt-3 text-2xl">{atual.t}</h3>
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{atual.d}</p>
+          <a href="#orcamento" className="btn-pill btn-green mt-6 font-semibold">
+            Orçar {atual.tab.toLowerCase()}
+          </a>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Diagnóstico inicial sem custo. Escopo e prazo por escrito.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {atual.i.map((c) => (
+            <div key={c.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
+              <h4 className="text-sm font-semibold">{c.n}</h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-card p-6 ring-1 ring-border sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
+          Não achou o seu caso? Descreva em uma frase — se for engenharia, a gente resolve ou
+          diz na hora quem resolve.
+        </p>
+        <a href="#orcamento" className="btn-pill btn-dark shrink-0 font-semibold">
+          Falar com o engenheiro
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function QuoteForm() {
+
   const [form, setForm] = useState({
     nome: "",
-    servico: servicosSelect[0],
+    servico: "Ainda não sei qual preciso",
     cidade: "",
     tipo: "",
   });
@@ -427,10 +549,16 @@ Tipo do imóvel: ${form.tipo || "-"}`;
           value={form.servico}
           onChange={(e) => setForm({ ...form, servico: e.target.value })}
         >
-          {servicosSelect.map((s) => (
-            <option key={s}>{s}</option>
+          <option>Ainda não sei qual preciso</option>
+          {servicosSelect.map((g) => (
+            <optgroup key={g.grupo} label={g.grupo}>
+              {g.itens.map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </optgroup>
           ))}
         </select>
+
         <div className="grid gap-3 sm:grid-cols-2">
           <input
             className={field}
@@ -473,12 +601,10 @@ function Index() {
             <a className="transition-colors hover:text-foreground" href="#problemas">
               Problemas
             </a>
-            <a className="transition-colors hover:text-foreground" href="#laudos">
-              Laudos
+            <a className="transition-colors hover:text-foreground" href="#areas">
+              Áreas de atuação
             </a>
-            <a className="transition-colors hover:text-foreground" href="#setores">
-              Serviços
-            </a>
+
             <a className="transition-colors hover:text-foreground" href="#paraquem">
               Para quem
             </a>
@@ -591,86 +717,21 @@ function Index() {
           </div>
         </section>
 
-        {/* LAUDOS */}
-        <section id="laudos" className="border-y border-border bg-secondary/50">
+        {/* NICHOS */}
+        <section id="areas" className="border-y border-border bg-secondary/50">
           <div className="mx-auto max-w-6xl px-5 py-20">
-            <p className="eyebrow">Laudos em engenharia civil</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">O que emitimos</h2>
+            <p className="eyebrow">Áreas de atuação</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              Escolha exatamente o que você precisa resolver
+            </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Cada documento é elaborado por engenheiro responsável, com ART quando exigido e
-              validade jurídica. O valor final é definido após o diagnóstico inicial, sem custo.
+              Cada frente tem engenheiro responsável próprio. Clique na sua área e veja o que
+              entregamos — se o seu caso estiver na lista, o orçamento sai hoje.
             </p>
-            <div className="mt-9 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {catalogoCivil.map((c) => (
-                <div key={c.n} className="card-elevated flex flex-col rounded-xl p-6">
-                  <h3 className="text-base font-semibold">{c.n}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {c.d}
-                  </p>
-                  <a
-                    href="#orcamento"
-                    className="btn-pill btn-outline mt-4 w-full text-sm hover:bg-secondary"
-                  >
-                    Orçar este laudo
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            <h3 className="mt-14 text-2xl">Segurança e saúde do trabalho</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Programas e laudos obrigatórios para manter sua empresa em conformidade com as
-              NRs e com o INSS.
-            </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {catalogoTrabalho.map((c) => (
-                <div key={c.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
-                  <span className="font-mono text-sm font-medium">{c.n}</span>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
-                </div>
-              ))}
-            </div>
+            <Nichos />
           </div>
         </section>
 
-        {/* SETORES */}
-        <section id="setores" className="mx-auto max-w-6xl px-5 py-20">
-          <p className="eyebrow">Projeto, obra e mão de obra</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">
-            Do desenho à entrega das chaves, com um único responsável técnico
-          </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Contratar cinco fornecedores diferentes é o jeito mais caro de atrasar uma obra.
-            Aqui, arquitetura, engenharia, execução e equipe respondem para o mesmo engenheiro.
-          </p>
-          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {setores.map((s) => (
-              <div key={s.t} className="card-elevated flex flex-col rounded-xl p-5">
-                <h3 className="text-sm font-semibold">{s.t}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {s.i.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full bg-secondary px-2.5 py-1 text-[11px] leading-tight text-muted-foreground"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-secondary/70 p-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">
-              Não achou o seu serviço na lista? Descreva a obra — se for engenharia, a gente
-              resolve ou diz na hora quem resolve.
-            </p>
-            <a href="#orcamento" className="btn-pill btn-green shrink-0 font-semibold">
-              Pedir orçamento agora
-            </a>
-          </div>
-        </section>
 
         {/* PARA QUEM */}
         <section id="paraquem" className="border-y border-border bg-secondary/50">
