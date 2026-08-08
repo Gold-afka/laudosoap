@@ -442,7 +442,70 @@ function WhatsAppIcon({ className = "size-5" }: { className?: string }) {
   );
 }
 
+function Nichos() {
+  const [ativo, setAtivo] = useState(nichos[0].k);
+  const atual = nichos.find((n) => n.k === ativo) ?? nichos[0];
+
+  return (
+    <div className="mt-9">
+      <div className="flex flex-wrap gap-2">
+        {nichos.map((n) => {
+          const on = n.k === atual.k;
+          return (
+            <button
+              key={n.k}
+              type="button"
+              onClick={() => setAtivo(n.k)}
+              className={`btn-pill px-4 py-2 text-sm font-medium ${
+                on
+                  ? "btn-dark shadow-sm"
+                  : "border border-border bg-card text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {n.tab}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-7 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="card-elevated flex flex-col rounded-2xl p-7">
+          <p className="eyebrow">{atual.eyebrow}</p>
+          <h3 className="mt-3 text-2xl">{atual.t}</h3>
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{atual.d}</p>
+          <a href="#orcamento" className="btn-pill btn-green mt-6 font-semibold">
+            Orçar {atual.tab.toLowerCase()}
+          </a>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Diagnóstico inicial sem custo. Escopo e prazo por escrito.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {atual.i.map((c) => (
+            <div key={c.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
+              <h4 className="text-sm font-semibold">{c.n}</h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-card p-6 ring-1 ring-border sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
+          Não achou o seu caso? Descreva em uma frase — se for engenharia, a gente resolve ou
+          diz na hora quem resolve.
+        </p>
+        <a href="#orcamento" className="btn-pill btn-dark shrink-0 font-semibold">
+          Falar com o engenheiro
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function QuoteForm() {
+
   const [form, setForm] = useState({
     nome: "",
     servico: "Ainda não sei qual preciso",
