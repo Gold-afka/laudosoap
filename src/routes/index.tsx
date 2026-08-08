@@ -443,8 +443,9 @@ function WhatsAppIcon({ className = "size-5" }: { className?: string }) {
 }
 
 function Nichos() {
-  const [ativo, setAtivo] = useState(nichos[0].k);
-  const atual = nichos.find((n) => n.k === ativo) ?? nichos[0];
+  const [ativo, setAtivo] = useState(nichos[0]!.k);
+  const atual = nichos.find((n) => n.k === ativo) ?? nichos[0]!;
+
 
   return (
     <div className="mt-9">
