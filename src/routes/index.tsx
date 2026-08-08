@@ -650,86 +650,21 @@ function Index() {
           </div>
         </section>
 
-        {/* LAUDOS */}
-        <section id="laudos" className="border-y border-border bg-secondary/50">
+        {/* NICHOS */}
+        <section id="areas" className="border-y border-border bg-secondary/50">
           <div className="mx-auto max-w-6xl px-5 py-20">
-            <p className="eyebrow">Laudos em engenharia civil</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl">O que emitimos</h2>
+            <p className="eyebrow">Áreas de atuação</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">
+              Escolha exatamente o que você precisa resolver
+            </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Cada documento é elaborado por engenheiro responsável, com ART quando exigido e
-              validade jurídica. O valor final é definido após o diagnóstico inicial, sem custo.
+              Cada frente tem engenheiro responsável próprio. Clique na sua área e veja o que
+              entregamos — se o seu caso estiver na lista, o orçamento sai hoje.
             </p>
-            <div className="mt-9 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {catalogoCivil.map((c) => (
-                <div key={c.n} className="card-elevated flex flex-col rounded-xl p-6">
-                  <h3 className="text-base font-semibold">{c.n}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {c.d}
-                  </p>
-                  <a
-                    href="#orcamento"
-                    className="btn-pill btn-outline mt-4 w-full text-sm hover:bg-secondary"
-                  >
-                    Orçar este laudo
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            <h3 className="mt-14 text-2xl">Segurança e saúde do trabalho</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Programas e laudos obrigatórios para manter sua empresa em conformidade com as
-              NRs e com o INSS.
-            </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {catalogoTrabalho.map((c) => (
-                <div key={c.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
-                  <span className="font-mono text-sm font-medium">{c.n}</span>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
-                </div>
-              ))}
-            </div>
+            <Nichos />
           </div>
         </section>
 
-        {/* SETORES */}
-        <section id="setores" className="mx-auto max-w-6xl px-5 py-20">
-          <p className="eyebrow">Projeto, obra e mão de obra</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">
-            Do desenho à entrega das chaves, com um único responsável técnico
-          </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Contratar cinco fornecedores diferentes é o jeito mais caro de atrasar uma obra.
-            Aqui, arquitetura, engenharia, execução e equipe respondem para o mesmo engenheiro.
-          </p>
-          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {setores.map((s) => (
-              <div key={s.t} className="card-elevated flex flex-col rounded-xl p-5">
-                <h3 className="text-sm font-semibold">{s.t}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {s.i.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full bg-secondary px-2.5 py-1 text-[11px] leading-tight text-muted-foreground"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col items-start gap-3 rounded-xl bg-secondary/70 p-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">
-              Não achou o seu serviço na lista? Descreva a obra — se for engenharia, a gente
-              resolve ou diz na hora quem resolve.
-            </p>
-            <a href="#orcamento" className="btn-pill btn-green shrink-0 font-semibold">
-              Pedir orçamento agora
-            </a>
-          </div>
-        </section>
 
         {/* PARA QUEM */}
         <section id="paraquem" className="border-y border-border bg-secondary/50">
