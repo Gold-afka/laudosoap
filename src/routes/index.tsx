@@ -78,7 +78,7 @@ const problemas = [
   { t: "Venda ou locação", d: "Registro do estado do imóvel antes de fechar negócio." },
   { t: "Processo judicial", d: "O juiz ou seu advogado pediu documento pericial." },
   { t: "Vigilância Sanitária", d: "LTA exigido para liberar clínica, hospital ou consultório." },
-  { t: "Fiscalização do trabalho", d: "GRO, LTCAT, PCMSO ou PPP cobrados pela fiscalização." },
+  { t: "Obra sem acompanhamento", d: "Execução sem engenheiro conferindo prazo, custo e qualidade." },
   { t: "Acessibilidade", d: "Adequação obrigatória à NBR 9050 em prédios e condomínios." },
 ];
 
