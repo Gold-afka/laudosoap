@@ -45,15 +45,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5511981854462";
 
 function waLink(msg: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
-const DEFAULT_WA = waLink(
-  "Olá! Vim pelo site da Oap Engenharia e preciso de um orçamento de laudo técnico.",
-);
+const DEFAULT_WA = waLink("Vim pelo site. Preciso de um orçamento!");
 
 const heroBullets = [
   "ART emitida quando exigido",
