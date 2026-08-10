@@ -246,7 +246,7 @@ const perfis = [
   {
     t: "Indústrias e empresas",
     d: "Fiscalização não avisa que vem. Deixamos a documentação técnica pronta antes.",
-    i: ["Laudos NR", "LTCAT / GRO", "Conformidade elétrica"],
+    i: ["Laudo de estabilidade", "Acompanhamento de obra", "Manutenção preventiva"],
   },
   {
     t: "Pessoa física",
