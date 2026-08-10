@@ -7,7 +7,7 @@ import avcbImg from "@/assets/avcb.jpg";
 
 const TITLE = "Laudos Técnicos com Engenheiro CREA | Oap Engenharia";
 const DESCRIPTION =
-  "Laudos de engenharia civil, AVCB, perícias, LTA e programas de segurança do trabalho com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
+  "Laudos de engenharia civil, AVCB, perícias, estabilidade de edificação e acompanhamento de obra com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,8 +35,8 @@ export const Route = createFileRoute("/")({
             "Laudo de Conformidade Técnica",
             "Perícia Técnica",
             "AVCB e CLCB",
-            "LTCAT",
-            "PCMSO",
+            "Laudo de Estabilidade de Edificação",
+            "Acompanhamento de Obra",
           ],
         }),
       },
@@ -78,7 +78,7 @@ const problemas = [
   { t: "Venda ou locação", d: "Registro do estado do imóvel antes de fechar negócio." },
   { t: "Processo judicial", d: "O juiz ou seu advogado pediu documento pericial." },
   { t: "Vigilância Sanitária", d: "LTA exigido para liberar clínica, hospital ou consultório." },
-  { t: "Fiscalização do trabalho", d: "GRO, LTCAT, PCMSO ou PPP cobrados pela fiscalização." },
+  { t: "Obra sem acompanhamento", d: "Execução sem engenheiro conferindo prazo, custo e qualidade." },
   { t: "Acessibilidade", d: "Adequação obrigatória à NBR 9050 em prédios e condomínios." },
 ];
 
@@ -119,32 +119,16 @@ const catalogoCivil = [
     n: "Laudo de Bombeiro (AVCB / CLCB)",
     d: "Regularização da edificação junto ao Corpo de Bombeiros.",
   },
+  {
+    n: "Laudo de Estabilidade de Edificação",
+    d: "Avalia a segurança estrutural do prédio e o risco real de colapso.",
+  },
 ];
 
 const catalogoTrabalho = [
   {
-    n: "GRO",
-    d: "Gerenciamento de Riscos Ocupacionais: processo contínuo de identificação, avaliação e controle de riscos.",
-  },
-  {
-    n: "LTCAT",
-    d: "Laudo Técnico das Condições Ambientais do Trabalho: usado para aposentadoria especial, identifica exposição a agentes nocivos.",
-  },
-  {
-    n: "PCMSO",
-    d: "Programa de Controle Médico de Saúde Ocupacional: monitoramento da saúde dos trabalhadores.",
-  },
-  {
-    n: "PPP",
-    d: "Perfil Profissiográfico Previdenciário: histórico laboral exigido pelo INSS.",
-  },
-  {
-    n: "AET",
-    d: "Análise Ergonômica do Trabalho: avalia condições ergonômicas e riscos relacionados.",
-  },
-  {
-    n: "PCMAT",
-    d: "Programa de Condições e Meio Ambiente de Trabalho na Construção Civil: obrigatório em obras com mais de 20 trabalhadores.",
+    n: "Acompanhamento de obra",
+    d: "Engenheiro em campo conferindo execução, prazo, custo e segurança do canteiro.",
   },
 ];
 
@@ -160,9 +144,9 @@ const nichos = [
   {
     k: "trabalho",
     tab: "Segurança do Trabalho",
-    eyebrow: "Conformidade com as NRs",
-    t: "Segurança e saúde ocupacional",
-    d: "Fiscalização, INSS e processo trabalhista não avisam antes de chegar. Programas e laudos obrigatórios em dia, com responsável técnico.",
+    eyebrow: "Engenheiro em campo",
+    t: "Acompanhamento de obra",
+    d: "Obra sem engenheiro acompanhando é obra no escuro. Presença técnica em campo conferindo execução, prazo, custo e segurança do canteiro.",
     i: catalogoTrabalho,
   },
   {
@@ -198,46 +182,26 @@ const nichos = [
   {
     k: "eletrica",
     tab: "Elétrica e Mecânica",
-    eyebrow: "Instalações e energia",
-    t: "Engenharia elétrica, mecânica e automação",
-    d: "Energia e clima dimensionados para a carga real da sua operação — e não para o susto da próxima conta.",
+    eyebrow: "Instalações e conforto",
+    t: "Ar condicionado e iluminação",
+    d: "Clima e luz dimensionados para a carga real da sua operação — e não para o susto da próxima conta.",
     i: [
-      { n: "Projeto de instalações elétricas", d: "Baixa e média tensão, com laudo e ART." },
-      { n: "SPDA e aterramento", d: "Proteção contra descargas atmosféricas conforme NBR 5419." },
-      { n: "Laudo NR-10", d: "Prontuário e conformidade das instalações elétricas." },
-      { n: "Iluminação e automação predial", d: "Eficiência energética e controle inteligente." },
-      { n: "Climatização e ventilação", d: "HVAC dimensionado por carga térmica, não por chute." },
-      { n: "Energia solar fotovoltaica", d: "Projeto, dimensionamento e homologação junto à concessionária." },
-    ],
-  },
-  {
-    k: "ambiental",
-    tab: "Ambiental e Saneamento",
-    eyebrow: "Licença e conformidade",
-    t: "Engenharia ambiental e sanitária",
-    d: "Conformidade ambiental sem interditar sua obra. Engenheiro ambiental próprio, do estudo ao protocolo no órgão.",
-    i: [
-      { n: "Licenciamento ambiental", d: "Prévia, instalação e operação, com acompanhamento do processo." },
-      { n: "Gestão de resíduos (PGRS/PGRCC)", d: "Plano exigido em obras e operações industriais." },
-      { n: "Drenagem urbana", d: "Água da chuva onde ela deve estar, não dentro do imóvel." },
-      { n: "Saneamento e tratamento de efluentes", d: "Redes, ETE e soluções individuais dimensionadas." },
-      { n: "Estudo de impacto de vizinhança", d: "EIV/RIVI para aprovação de empreendimentos." },
-      { n: "Outorga e recursos hídricos", d: "Poços, captação e uso da água regularizados." },
+      { n: "Instalação de ar condicionado", d: "Dimensionamento por carga térmica, instalação e adequação da rede elétrica." },
+      { n: "Iluminação", d: "Projeto luminotécnico e eficiência energética para ambientes e fachadas." },
     ],
   },
   {
     k: "obras",
     tab: "Construção e Infraestrutura",
     eyebrow: "Execução de obra",
-    t: "Construção de edifícios e infraestrutura",
+    t: "Construção, reforma e manutenção",
     d: "Obra tocada com prazo, custo e qualidade em relatório — não em promessa de WhatsApp.",
     i: [
       { n: "Edificações residenciais e comerciais", d: "Da fundação à entrega das chaves (CNAE 41)." },
       { n: "Obras industriais", d: "Galpões, plantas e ampliações com cronograma físico-financeiro." },
       { n: "Reformas e retrofit", d: "Modernização de prédios antigos sem parar a operação." },
-      { n: "Estradas, pontes e terraplenagem", d: "Obra pesada que aguenta carga, tráfego e fiscalização." },
-      { n: "Redes e infraestrutura urbana", d: "Água, esgoto, drenagem e pavimentação." },
-      { n: "Manutenção predial preventiva", d: "Plano de manutenção conforme NBR 5674." },
+      { n: "Manutenção preventiva", d: "Plano periódico conforme NBR 5674, antes do problema virar obra." },
+      { n: "Manutenção corretiva", d: "Resposta rápida para o que já quebrou, com responsável técnico." },
     ],
   },
   {
@@ -250,9 +214,9 @@ const nichos = [
       { n: "Alvenaria e revestimentos", d: "Chapisco, reboco, gesso, pisos e acabamentos." },
       { n: "Impermeabilização", d: "Lajes, reservatórios e áreas molhadas com garantia técnica." },
       { n: "Limpeza e recuperação de fachada", d: "Trabalho em altura com equipe treinada em NR-35." },
-      { n: "Andaimes, poços e escoramento", d: "Montagem e liberação com responsável técnico." },
       { n: "Equipes operacionais", d: "Pedreiros, eletricistas, encanadores e pintores." },
       { n: "Operadores de equipamento", d: "Guindaste, grua e elevador de obra com certificação." },
+      { n: "Facilities", d: "Gestão predial contínua: manutenção, zeladoria técnica e rotinas do dia a dia." },
     ],
   },
 ];
@@ -282,7 +246,7 @@ const perfis = [
   {
     t: "Indústrias e empresas",
     d: "Fiscalização não avisa que vem. Deixamos a documentação técnica pronta antes.",
-    i: ["Laudos NR", "LTCAT / GRO", "Conformidade elétrica"],
+    i: ["Laudo de estabilidade", "Acompanhamento de obra", "Manutenção preventiva"],
   },
   {
     t: "Pessoa física",
@@ -393,35 +357,10 @@ const faq = [
   },
 ];
 
-const ajustesSelect: Record<string, (itens: string[]) => string[]> = {
-  "Laudos e Perícias": (i) => [...i, "Laudo de estabilidade de edificação"],
-  "Segurança do Trabalho": () => ["Acompanhamento de obra"],
-  "Elétrica e Mecânica": () => [
-    "Instalação de ar condicionado",
-    "Iluminação",
-  ],
-  "Construção e Infraestrutura": (i) => [
-    ...i.filter(
-      (s) =>
-        !s.includes("Estradas, pontes") && !s.includes("Redes e infraestrutura"),
-    ),
-    "Manutenção preventiva",
-    "Manutenção corretiva",
-  ],
-  "Ambiental e Saneamento": () => [],
-  "Serviços e Mão de Obra": (i) => [
-    ...i.filter((s) => !s.includes("Andaimes")),
-    "Facilities",
-  ],
-};
-
-const servicosSelect = nichos
-  .map((n) => {
-    const itens = n.i.map((c) => c.n);
-    const ajuste = ajustesSelect[n.tab];
-    return { grupo: n.tab, itens: ajuste ? ajuste(itens) : itens };
-  })
-  .filter((g) => g.itens.length > 0);
+const servicosSelect = nichos.map((n) => ({
+  grupo: n.tab,
+  itens: n.i.map((c) => c.n),
+}));
 
 
 
