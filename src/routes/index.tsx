@@ -7,7 +7,7 @@ import avcbImg from "@/assets/avcb.jpg";
 
 const TITLE = "Laudos Técnicos com Engenheiro CREA | Oap Engenharia";
 const DESCRIPTION =
-  "Laudos de engenharia civil, AVCB, perícias, LTA e programas de segurança do trabalho com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
+  "Laudos de engenharia civil, AVCB, perícias, estabilidade de edificação e acompanhamento de obra com ART e validade jurídica. Orçamento rápido com engenheiro responsável, em todo o Brasil.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
