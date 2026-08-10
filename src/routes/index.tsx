@@ -357,35 +357,10 @@ const faq = [
   },
 ];
 
-const ajustesSelect: Record<string, (itens: string[]) => string[]> = {
-  "Laudos e Perícias": (i) => [...i, "Laudo de estabilidade de edificação"],
-  "Segurança do Trabalho": () => ["Acompanhamento de obra"],
-  "Elétrica e Mecânica": () => [
-    "Instalação de ar condicionado",
-    "Iluminação",
-  ],
-  "Construção e Infraestrutura": (i) => [
-    ...i.filter(
-      (s) =>
-        !s.includes("Estradas, pontes") && !s.includes("Redes e infraestrutura"),
-    ),
-    "Manutenção preventiva",
-    "Manutenção corretiva",
-  ],
-  "Ambiental e Saneamento": () => [],
-  "Serviços e Mão de Obra": (i) => [
-    ...i.filter((s) => !s.includes("Andaimes")),
-    "Facilities",
-  ],
-};
-
-const servicosSelect = nichos
-  .map((n) => {
-    const itens = n.i.map((c) => c.n);
-    const ajuste = ajustesSelect[n.tab];
-    return { grupo: n.tab, itens: ajuste ? ajuste(itens) : itens };
-  })
-  .filter((g) => g.itens.length > 0);
+const servicosSelect = nichos.map((n) => ({
+  grupo: n.tab,
+  itens: n.i.map((c) => c.n),
+}));
 
 
 
