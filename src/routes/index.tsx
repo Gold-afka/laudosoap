@@ -119,32 +119,16 @@ const catalogoCivil = [
     n: "Laudo de Bombeiro (AVCB / CLCB)",
     d: "Regularização da edificação junto ao Corpo de Bombeiros.",
   },
+  {
+    n: "Laudo de Estabilidade de Edificação",
+    d: "Avalia a segurança estrutural do prédio e o risco real de colapso.",
+  },
 ];
 
 const catalogoTrabalho = [
   {
-    n: "GRO",
-    d: "Gerenciamento de Riscos Ocupacionais: processo contínuo de identificação, avaliação e controle de riscos.",
-  },
-  {
-    n: "LTCAT",
-    d: "Laudo Técnico das Condições Ambientais do Trabalho: usado para aposentadoria especial, identifica exposição a agentes nocivos.",
-  },
-  {
-    n: "PCMSO",
-    d: "Programa de Controle Médico de Saúde Ocupacional: monitoramento da saúde dos trabalhadores.",
-  },
-  {
-    n: "PPP",
-    d: "Perfil Profissiográfico Previdenciário: histórico laboral exigido pelo INSS.",
-  },
-  {
-    n: "AET",
-    d: "Análise Ergonômica do Trabalho: avalia condições ergonômicas e riscos relacionados.",
-  },
-  {
-    n: "PCMAT",
-    d: "Programa de Condições e Meio Ambiente de Trabalho na Construção Civil: obrigatório em obras com mais de 20 trabalhadores.",
+    n: "Acompanhamento de obra",
+    d: "Engenheiro em campo conferindo execução, prazo, custo e segurança do canteiro.",
   },
 ];
 
