@@ -123,7 +123,12 @@ const catalogoCivil = [
     n: "Laudo de Estabilidade de Edificação",
     d: "Avalia a segurança estrutural do prédio e o risco real de colapso.",
   },
+  {
+    n: "Vistoria de Apartamentos e Casas",
+    d: "Checagem técnica antes de comprar, alugar ou entregar o imóvel.",
+  },
 ];
+
 
 const catalogoTrabalho = [
   {
