@@ -144,9 +144,9 @@ const nichos = [
   {
     k: "trabalho",
     tab: "Segurança do Trabalho",
-    eyebrow: "Conformidade com as NRs",
-    t: "Segurança e saúde ocupacional",
-    d: "Fiscalização, INSS e processo trabalhista não avisam antes de chegar. Programas e laudos obrigatórios em dia, com responsável técnico.",
+    eyebrow: "Engenheiro em campo",
+    t: "Acompanhamento de obra",
+    d: "Obra sem engenheiro acompanhando é obra no escuro. Presença técnica em campo conferindo execução, prazo, custo e segurança do canteiro.",
     i: catalogoTrabalho,
   },
   {
