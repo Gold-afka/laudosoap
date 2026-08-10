@@ -408,17 +408,20 @@ const ajustesSelect: Record<string, (itens: string[]) => string[]> = {
     "Manutenção preventiva",
     "Manutenção corretiva",
   ],
+  "Ambiental e Saneamento": () => [],
   "Serviços e Mão de Obra": (i) => [
     ...i.filter((s) => !s.includes("Andaimes")),
     "Facilities",
   ],
 };
 
-const servicosSelect = nichos.map((n) => {
-  const itens = n.i.map((c) => c.n);
-  const ajuste = ajustesSelect[n.tab];
-  return { grupo: n.tab, itens: ajuste ? ajuste(itens) : itens };
-});
+const servicosSelect = nichos
+  .map((n) => {
+    const itens = n.i.map((c) => c.n);
+    const ajuste = ajustesSelect[n.tab];
+    return { grupo: n.tab, itens: ajuste ? ajuste(itens) : itens };
+  })
+  .filter((g) => g.itens.length > 0);
 
 
 
