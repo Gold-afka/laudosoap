@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { trackWhatsappClick, trackQuoteSubmit } from "@/lib/gtag";
 import heroImg from "@/assets/hero-engenheiro.jpg";
 import droneImg from "@/assets/obra-drone.jpg";
 import trincaImg from "@/assets/trinca.jpg";
@@ -499,6 +500,7 @@ Tipo do imóvel: ${form.tipo || "-"}`;
       className="card-elevated rounded-xl p-6 sm:p-7"
       onSubmit={(e) => {
         e.preventDefault();
+        trackQuoteSubmit(form.servico);
         window.open(waLink(mensagem), "_blank", "noopener");
       }}
     >
@@ -623,6 +625,7 @@ function Index() {
                 </a>
                 <a
                   href={DEFAULT_WA}
+                  onClick={() => trackWhatsappClick("hero")}
                   className="btn-pill btn-outline border-surface-deep-foreground/30 bg-transparent px-7 py-3.5 text-surface-deep-foreground"
                 >
                   Falar com um engenheiro
@@ -897,7 +900,11 @@ function Index() {
                   ))}
                 </ul>
               </div>
-              <a href={DEFAULT_WA} className="btn-pill btn-outline mt-7 bg-card">
+              <a
+                href={DEFAULT_WA}
+                onClick={() => trackWhatsappClick("secao_orcamento")}
+                className="btn-pill btn-outline mt-7 bg-card"
+              >
                 Prefiro chamar no WhatsApp
               </a>
 
@@ -934,7 +941,11 @@ function Index() {
               mesmo do orçamento.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href={DEFAULT_WA} className="btn-pill btn-green px-8 py-3.5 font-semibold">
+              <a
+                href={DEFAULT_WA}
+                onClick={() => trackWhatsappClick("cta_final")}
+                className="btn-pill btn-green px-8 py-3.5 font-semibold"
+              >
                 Chamar no WhatsApp
               </a>
               <a
@@ -960,6 +971,7 @@ function Index() {
 
       <a
         href={DEFAULT_WA}
+        onClick={() => trackWhatsappClick("botao_flutuante")}
         aria-label="Falar no WhatsApp"
         className="btn-pill btn-green fixed bottom-5 right-5 z-50 px-5 py-3.5 text-sm font-semibold shadow-lg"
       >
